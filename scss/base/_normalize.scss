@@ -1,0 +1,37 @@
+*, *::before, *::after {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration:none;
+    color:inherit;
+}
+
+input, button, textarea {
+    font-family:inherit;
+    font-size:inherit;
+    border:none;
+    color:inherit;
+    background-color:transparent;
+
+    &:focus {
+        outline:none;
+    }
+}
+
+::-webkit-input-placeholder {
+    color:var(--col-input-placeholder);
+}
+
+ul {
+    list-style:none;
+    padding:0;
+}
+
+svg {
+    width:2rem;
+    height:2rem;
+    fill:currentColor;
+}

@@ -1,0 +1,56 @@
+$main-color: #00FFFF;
+$col-background-light: #f3f3f3;
+
+$col-secondary: #00b459;
+$light-color2: #E1F3F9;
+$color-2: #2adada;
+$button-color: #13bebe;
+$button-color-side: #0b6b6b;
+$text-light-main: #1D3244;
+$text-light-placeholder: #999999;
+$alt-light-bg: #1D3244;
+$alt-light-bg2: #1D3D56;
+$slider-hov: #72070099;
+
+$col-container-dark: #24261F;
+$dark-color2: #1A1919;
+$col-background-dark: #24261F;
+$text-dark-main: #E1F3F9;
+$text-dark-placeholder: #bdbdbd;
+
+
+.light-theme, .dark-theme {
+    --col-primary: #{$main-color};
+    --col-secondary: #{$col-secondary};
+    --col-slider: #{$slider-hov};
+}
+
+.light-theme {
+    --col-container: white;
+    --col-nav: #{$light-color2};
+    --col-hover-nav: #{$color-2};
+    --col-background: #{$col-background-light};
+
+    --col-input-placeholder: #{$text-light-placeholder};
+    --col-text-1: #{$text-light-main};
+
+    --col-alt-bg: #{$alt-light-bg};
+    --col-alt-bg2: #{$alt-light-bg2};
+}
+
+.dark-theme {
+    --col-container: #{$col-container-dark};
+    --col-nav: #{$dark-color2};
+    --col-hover-nav: #{$color-2};
+    --col-background: #{$col-background-dark};
+
+    --col-input-placeholder: #{$text-dark-placeholder};
+    --col-text-1: #{$text-dark-main};
+
+    --col-alt-bg: #{$alt-light-bg};
+    --col-alt-bg2: #{$alt-light-bg2};
+}
+
+$font-lato: 'Lato', sans-serif;
+$font-somar: 'Somar', 'regular';
+$font-somar-bold: 'Somar', 'bold';

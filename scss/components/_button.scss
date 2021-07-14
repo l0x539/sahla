@@ -1,0 +1,26 @@
+.btn {
+    &__big {
+        background: $button-color-side;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+        font-weight: 700;
+    }
+    &__big--front {
+        display: block;
+        padding: 12px 3rem;
+        border-radius: 12px;
+        font-size: 1.5rem;
+        background: $button-color;
+        color: white;
+        transform: translateY(-6px);
+        will-change: transform;
+        transition: transform 50ms;
+    }
+    &__big:active &__big--front {
+        transform: translateY(-2px);
+    }
+
+}

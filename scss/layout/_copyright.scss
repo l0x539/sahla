@@ -1,0 +1,18 @@
+.copyright {
+
+    &__banner {
+        height:3rem;   /* Height of the footer */
+        background-color: var(--col-nav);
+        color: var(--col-input-placeholder);
+        font-size: 12px;
+        text-align: center;
+        height: 3rem;
+        line-height: 3rem;
+        text-align: center;
+    }
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+    }
+}

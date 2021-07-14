@@ -32,3 +32,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# assets
+
+/assets
+/public/assets
+/public/fonts

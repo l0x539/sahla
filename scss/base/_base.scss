@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+@font-face {
+    font-family: "Somar", "regular";
+    src: url("/fonts/somar/Somar-Regular.otf");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Somar", "bold";
+    src: url("/fonts/somar/Somar-ExtraBold.otf");
+    font-style: medium;
+    font-weight: bold;
+    font-display: swap;
+  }
+
+html {
+    //defines 1rem as 10px to make math easier
+    font-size:62.5%;
+
+    @include respond(_1200) { font-size:57.5% }
+    @include respond(_992) { font-size:55% }
+    @include respond(_768) { font-size:52.5% }
+    @include respond(_576) { font-size:50% }
+}
+
+body {
+  font-size:1.5rem;
+  line-height:1.4;
+  font-family: $font-lato;
+}
+
+.root {
+  min-height:100vh;
+  background-color:var(--col-background);
+  color:var(--col-text-2);
+
+  display:flex;
+  flex-direction:column;
+}
