@@ -38,3 +38,6 @@ yarn-error.log*
 /assets
 /public/assets
 /public/fonts
+
+# yarn
+yarn.lock
