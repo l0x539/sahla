@@ -29,7 +29,9 @@ class Layout extends Component {
                     {this.props.children}
                 </div>
                 <footer>
+                    <div className="main-divider"></div>
                     <Footer />
+                    <div className="main-divider"></div>
                     <Copyright />
                 </footer>
             </main>

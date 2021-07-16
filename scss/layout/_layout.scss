@@ -9,6 +9,9 @@
         z-index: 1;
 
     }
+    .dark-theme  &__headline {
+        box-shadow: 0px -16px 41px 9px #0ff;
+    }
 
     &__container {
         @include margin;
@@ -21,6 +24,7 @@
     &__list {
         display: flex;
         color: var(--col-text-1);
+        height: 10rem;
         &--right {
             margin-left:auto;
         }
@@ -32,16 +36,18 @@
     &__list:not(&__list--right) &__item:not(:last-of-type) {
         margin-right:3rem;
     }
-    &__list--right &__item:not(:last-of-type) {
-        margin-left:3rem;
-    }
 
     &__item {
         display:flex;
+        cursor: pointer;
         align-items:center;
-        padding: 0 2rem;
+        padding: 0 3rem;
+        
     }
 
+    &__item--link:hover {
+        box-shadow: inset 0 0 2rem var(--col-hover-nav);
+    }
 
     &__link {
         position: relative;
@@ -53,7 +59,7 @@
     }
 
     &__item--active {
-        color:$main-color;
+        color:$color-2;
     }
 
     &__logo-snap {
@@ -91,4 +97,15 @@
     
     border-top: 3rem solid var(--col-primary);
   }
+
+.main-divider {
+    width: 100%;
+    border-top: 3px solid var(--col-primary);
+    
+    z-index: 6;
+}
+
+.dark-theme .main-divider {
+    box-shadow: 0 0 2rem var(--col-primary);
+}
   

@@ -2,3 +2,95 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+
+    color: var(--col-text-1);
+
+    &__list {
+        flex: 0 1 30rem;
+        margin: 0 2rem;
+        padding-top: 2rem;
+    }
+
+    &__list.left {
+        margin-left: 10%;
+        
+    }
+
+    &__title {
+        border-bottom: .2rem solid var(--col-primary);
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+    }
+
+    &__title2 {
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+    }
+
+    &__list--container {
+        display: flex;
+        flex-direction: row;
+        justify-content:flex-start;
+        align-items: flex-start;
+        padding-bottom: 3rem;
+    }
+
+    &__list--links {
+        margin-right: 30%;
+    }
+
+    &__link {
+        margin: 2rem 0;
+        font-size: 1.4rem;
+        transition: all .1s ease;
+    }
+
+    &__link:hover {
+        color: var(--col-primary);
+        transform: translateX(.3rem);
+    }
+
+    &__logo {
+        width: 25rem;
+        height: auto;
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 3rem;
+        background-color: var(--col-nav);
+        clip-path: polygon(100% 0,100% 100%,0 100%,0 100%,3em 0);
+        padding-right: 10%;
+        }
+
+    &__socials {
+        display: flex;
+        justify-content: space-around;
+        width: 15rem;
+    }
+
+    &__socials svg {
+        height: 3rem;
+        width: auto;
+    }
+
+    &__logo {
+        margin-left: 9.8rem;
+        padding-bottom: 2rem;
+        padding-top: 6rem;
+    }
+
+    &__logo img {
+        height: 14rem;
+    }
+}
