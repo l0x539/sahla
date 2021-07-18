@@ -1,0 +1,93 @@
+.nav {
+    background-color: var(--col-nav);
+    box-shadow: 0px 0px 10px -5px #000000;
+    z-index: 1;
+
+    &__headline {
+        width: 100%;
+        border-top: 6px solid var(--col-primary);
+        z-index: 1;
+
+    }
+    .dark-theme  &__headline {
+        box-shadow: 0px -16px 41px 9px #0ff;
+    }
+
+    &__container {
+        @include margin;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-height: 10rem;
+    }
+
+    &__list {
+        display: flex;
+        color: var(--col-text-1);
+        height: 10rem;
+        &--right {
+            margin-left:auto;
+        }
+        @include respond(_768) {
+            display:none;
+        }
+    }
+
+    &__list:not(&__list--right) &__item:not(:last-of-type) {
+        margin-right:3rem;
+    }
+
+    &__item {
+        display:flex;
+        align-items:center;
+        padding: 0 3rem;
+        
+    }
+
+    &__item--link {
+        cursor: pointer;
+
+        @include respond(_992) { 
+            display: none;
+            visibility: hidden;
+        }
+    }
+
+    &__item--link:hover {
+        box-shadow: inset 0 0 2rem var(--col-hover-nav);
+    }
+
+    &__link {
+        position: relative;
+        transition:color .2s ease;
+    }
+
+    &__item:not(&__item--active) > &__link:not(&__link--solid):hover {
+        color:var(--col-hover-nav)
+    }
+
+    &__item--active {
+        color:$color-2;
+    }
+
+    &__logo-snap {
+        margin-left: 8rem;
+        z-index: -1;
+    }
+
+    &__logo-container {
+        background-image: url("/assets/LogoHolder.svg");
+        background-repeat: no-repeat, repeat;
+        filter: drop-shadow(5px 1px 5px rgba(0, 0, 0, 0.6));
+
+        padding-top: 6rem;
+        
+        // @include respond(_320) { display: none; }
+    }
+
+    &__logo {
+
+        width:10rem;
+        height:10rem;
+    }
+}

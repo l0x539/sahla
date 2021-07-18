@@ -1,92 +1,100 @@
-.nav {
-    background-color: var(--col-nav);
-    box-shadow: 0px 0px 10px -5px #000000;
-    z-index: 1;
-
-    &__headline {
-        width: 100%;
-        border-top: 6px solid var(--col-primary);
-        z-index: 1;
-
-    }
-    .dark-theme  &__headline {
-        box-shadow: 0px -16px 41px 9px #0ff;
-    }
-
-    &__container {
-        @include margin;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-height: 10rem;
-    }
-
-    &__list {
-        display: flex;
-        color: var(--col-text-1);
-        height: 10rem;
-        &--right {
-            margin-left:auto;
-        }
-        @include respond(_768) {
-            display:none;
-        }
-    }
-
-    &__list:not(&__list--right) &__item:not(:last-of-type) {
-        margin-right:3rem;
-    }
-
-    &__item {
-        display:flex;
-        cursor: pointer;
-        align-items:center;
-        padding: 0 3rem;
-        
-    }
-
-    &__item--link:hover {
-        box-shadow: inset 0 0 2rem var(--col-hover-nav);
-    }
-
-    &__link {
-        position: relative;
-        transition:color .2s ease;
-    }
-
-    &__item:not(&__item--active) > &__link:not(&__link--solid):hover {
-        color:var(--col-hover-nav)
-    }
-
-    &__item--active {
-        color:$color-2;
-    }
-
-    &__logo-snap {
-        margin-left: 8rem;
-        z-index: -1;
-    }
-
-    &__logo-container {
-        background-image: url("/assets/LogoHolder.svg");
-        background-repeat: no-repeat, repeat;
-        filter: drop-shadow(5px 1px 5px rgba(0, 0, 0, 0.6));
-
-        padding-top: 6rem;
-        
-        // @include respond(_320) { display: none; }
-    }
-
-    &__logo {
-
-        width:10rem;
-        height:10rem;
-    }
-}
-
 .content {
     @include margin;
-    min-height: 62rem;
+    min-height: 40rem;
+    color: var(--col-text-1);
+    &__holder {
+        margin-bottom: 4rem;
+        padding-top: 2rem;
+    }
+    &__title {
+        text-align: center;
+        margin-bottom: 1rem;
+        
+
+    }
+    &__title.arabic {
+        font-size: 5rem;
+        font-family: $font-somar;
+    }
+    
+    &__darker-holder {
+        background-color: var(--col-alt-bg);
+        margin: 0 -30rem;
+        &-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: white;
+    
+        }
+        &-title.arabic {
+            font-size: 5rem;
+            font-family: $font-somar;
+        }
+    }
+
+    &__image-holder {
+        background-image: url("/assets/falling-banknotes-concept.jpg");
+        background-position: center;
+        background-size: contain;
+        margin: 0 -30rem;
+        
+        &-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: white;
+    
+        }
+        &-title.arabic {
+            font-size: 5rem;
+            font-family: $font-somar;
+        }
+
+        &__categories {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            @include respond(_992) {
+              flex-wrap: wrap;
+            margin: 0;
+
+    
+            }
+            margin: 2rem 0;
+
+        }
+        &__categories .category:first-child {
+            margin-right: 20rem;
+            @include respond(_992) {
+                margin: 1rem 1rem;
+   
+            }
+        }
+        &__categories .category:last-child {
+            margin-left: 20rem;
+            @include respond(_992) {
+                margin: 1rem 1rem;
+
+            }
+        }
+
+        &__categories .category {
+            margin: 0 1rem;
+            @include respond(_992) {
+                margin: 1rem 1rem;
+            }
+        }
+        
+    }
+
+    &__fr {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        @include respond(_992) { 
+            flex-wrap: wrap;
+        }
+    }
 }
 
 .arrow-down {

@@ -1,0 +1,39 @@
+.paper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 15px;
+    box-shadow: 0px 0px 18px 2px #0000009e;
+    background-color: $col-paper;
+    font-size: 14.5rem;
+    color: white;
+    height: 25rem;
+    width: 25rem;
+    cursor: pointer;
+    transition: transform .6s ease-in-out;
+
+    @include respond(_992) {
+        margin: 2rem 0;
+
+    }
+    &__circle {
+        border-radius: 50%;
+        width: 70%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 8px solid var(--col-primary);
+        box-shadow: 0 0 2rem var(--col-primary);
+
+    }
+    
+}
+.paper:hover {
+    transform: rotate3d(0, 1, 0, 
+    90deg
+    ) ;
+}

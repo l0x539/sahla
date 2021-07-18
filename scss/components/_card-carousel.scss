@@ -1,0 +1,27 @@
+.card-carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    @include respond(_992) { 
+        flex-wrap: wrap;
+    }
+    
+
+
+    &__item {
+        cursor: pointer;
+        @include respond(_992) {
+            margin: 2rem 0;
+
+        }
+        width: 20em;
+        transition: transform 50ms ease;
+
+    }
+
+    &__item:hover {
+        transform: scale(1.1);
+    }
+}

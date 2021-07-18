@@ -13,10 +13,13 @@ class LanguageSelect extends Component {
 
     showMenu(event) {
         event.preventDefault();
-        
-        this.setState({ showMenu: true }, () => {
-          document.addEventListener('click', this.closeMenu);
-        });
+        if (this.state.showMenu) {
+            this.setState({ showMenu: false })
+        } else {
+            this.setState({ showMenu: true }, () => {
+              document.addEventListener('click', this.closeMenu);
+            });
+        }
     }
 
     

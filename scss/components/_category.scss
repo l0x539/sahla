@@ -1,0 +1,54 @@
+.category {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border-radius: 8px;
+    width: 19rem;
+    height: 11.2rem;
+    border: 1px $col-border;
+    box-shadow: 0 0 2rem var(--col-primary);
+    background-color: var(--col-alt-bg2);
+    color: $text-dark-main;
+    cursor: pointer;
+    transition: transform 50ms ease;
+
+    &__text {
+        
+        display: flex;
+        flex-direction: column;
+        margin: 0 0.5rem;
+    }
+
+    .arabic &__text {
+        text-align: end;
+        font-family: $font-somar;
+
+    }
+
+    &__title {
+        font-size: 2.6rem;
+    }
+
+    .arabic &__title {
+        font-family: $font-somar;
+    }
+
+    &__svg {
+        padding: 1rem;
+    }
+
+    &__svg svg {
+        height: 3rem;
+        width: auto;
+        fill: unset;
+    }
+}
+
+.category:hover {
+    transform: scale(1.1);
+    border: solid 1px var(--col-primary);
+}
+
+.category.arabic {
+    flex-direction: row-reverse;
+}

@@ -1,0 +1,19 @@
+.message {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: solid 1px rgb(212, 211, 211);
+    height: 50rem;
+    margin: 3rem 0;
+    border-radius: 6px;
+    &__title {
+        font-size: 8rem;
+    }
+
+    &__desc {
+        font-size: 4rem;
+    }
+}

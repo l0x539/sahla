@@ -16,9 +16,21 @@ footer {
         padding-top: 2rem;
     }
 
+    &__list.mid {
+        @include respond(_992) {
+            display: none;
+            visibility: hidden;
+
+        }
+    }
+
     &__list.left {
         margin-left: 10%;
-        
+        @include respond(_768) {
+            max-height: 30rem;
+            overflow-y: clip;
+
+        }
     }
 
     &__title {

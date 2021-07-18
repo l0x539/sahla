@@ -16,7 +16,7 @@ const Footer = () => {
                 Sahla is an online based business company and commercial trade center that provides services for its customers  and help advertise, spread and attract  customers to businesses.	
                 </div>
             </div>
-            <div className="footer__list">
+            <div className="footer__list mid">
                 <h2 className="footer__title">
                     Useful Links
                 </h2>

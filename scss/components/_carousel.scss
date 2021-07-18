@@ -1,0 +1,16 @@
+.root {
+    .carousel .slide img {
+        width: 40%
+    }
+
+    .carousel.carousel-slider .control-arrow:hover {
+        background: unset;
+    }
+
+    .carousel__img {
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        height: 35rem;
+    }
+}
