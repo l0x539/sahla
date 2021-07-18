@@ -15,9 +15,9 @@ class MyDocument extends Document {
                     <meta charset="UTF-8" />
                     <meta property="og:url"                content="https://sahlabusiness.com" />
                     <meta property="og:type"               content="website" />
-                    <meta property="og:title"              content="Sahla Title" />
-                    <meta property="og:description"        content="Sahla Description." />
-                    <meta property="og:image"              content="" />
+                    <meta property="og:title"              content="Sahla Business" />
+                    <meta property="og:description"        content="Find best services and products nearby you." />
+                    <meta property="og:image"              content="/assets/preview.png" />
                 </Head>
                 <body>
                     <Main />
