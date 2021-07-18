@@ -11,8 +11,15 @@ class Paper extends Component {
 
     render () {
         return (
-            <div className="paper">
-                {this.props.children}
+            <div className="paper__container">
+                <div className="paper__side paper ">
+                    {this.props.children}
+                </div>
+                <div className="paper__side paper__other-side arabic">
+                    <div className="paper__other-side-part ">
+                        {this.props.otherSide}
+                    </div>
+                </div>
             </div>
         )
     }

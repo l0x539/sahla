@@ -41,8 +41,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Carousel swiping autoPlay swipeable showThumbs={false}>
-          <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}}>
-              
+          <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}} >
+            <div className="img_cont"  />
           </div>
           <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}}>
               
@@ -76,7 +76,19 @@ export default function Home() {
                 <p>1</p>
               </div>
             </Paper>
-            <Paper >
+            <Paper otherSide={
+              <>
+                <h4 className="paper__title">
+                  {'أدخل منتجك أو خدمتك'}
+                </h4>
+                <div className="paper__desc">
+                  <p>{'أدخل نوع المنتج أو الخدمة -'}</p>
+                  <p>{'أدخل معلومات و صور عن المنتج أو الخدمة -'}</p>
+                  <p>{'إختر نوع التعاقد مع سهلة -'}</p>
+                  <p>{'تحقق من صحة المعلومات -'}</p>
+                </div>
+              </>
+            } >
               <div className="paper__circle">
                 <p>2</p>
               </div>

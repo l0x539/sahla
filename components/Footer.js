@@ -68,13 +68,13 @@ const Footer = () => {
                 </div>
                 <h3 className="footer__title2" >Connect with us</h3>
                 <div className="footer__socials">
-                    <a target="_blank" href="https://fb.me/sahla">
+                    <a target="_blank" href="https://fb.me/Sahlabusiness">
                         <Facebook />
                     </a>
-                    <a target="_blank" href="https://fb.me/sahla">
+                    <a target="_blank" href="https://twitter.com/Sahlabusiness">
                         <Twitter />
                     </a>
-                    <a target="_blank" href="https://instagram.com/sahla">
+                    <a target="_blank" href="https://instagram.com/Sahlabusiness">
                         <Instagram />
                     </a>
                 </div>

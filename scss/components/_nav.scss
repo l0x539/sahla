@@ -28,6 +28,9 @@
         &--right {
             margin-left:auto;
         }
+        @include respond(_992) {
+            margin-left: 0;
+        }
         @include respond(_768) {
             display:none;
         }

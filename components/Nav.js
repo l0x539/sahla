@@ -5,6 +5,7 @@ import SignUpButton from "./SignUpButton";
 import ThemeSwitch from "./ThemeSwitch";
 import Logo from "../assets/logo.svg";
 import LogoHolder from "../assets/LogoHolder.svg";
+import { Divide as Hamburger } from 'hamburger-react'
 
 
 
@@ -68,6 +69,9 @@ class Nav extends Component {
                         <div className="nav__item">
                             <SignUpButton />
                         </div>
+                    </div>
+                    <div className="menu">
+                        <Hamburger />
                     </div>
                 </div>
             </div>
