@@ -1,4 +1,7 @@
-.nav {
+.nav__item--switch {
+  &-menu {
+    margin-top: 2rem;
+  }
   .switch {
     position: relative;
     display: inline-block;

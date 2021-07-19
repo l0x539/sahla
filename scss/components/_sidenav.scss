@@ -1,0 +1,104 @@
+.sidenav {
+    background-color: var(--col-container);
+    position: absolute;
+    z-index:1001;
+    right:0;
+    height:100%;
+    width:30rem;
+    transform:translateX(120%);
+    overflow:hidden;
+
+    transition:transform .5s ease;
+
+
+    &__background--active & {
+        transform:translateX(0);
+    }
+    
+    &__background {
+        position: fixed;
+        top:0;
+        left:0;
+        width:100vw;
+        height:100vh;
+        z-index:999;
+        
+        visibility:hidden;
+
+        backdrop-filter:blur(0);
+        background:rgba(#000, 0);
+
+        transition:all .4s ease;
+
+        &--active {
+            backdrop-filter:blur(5px);
+            background:rgba(#000, .5);
+            visibility:visible;
+        }
+    }
+
+    &__wave {
+        position: absolute;
+        top:0;
+        right:0;
+        
+        z-index:1000;
+        transform: translateX(15rem) rotate(-90deg) rotateX(180deg);
+        transform-origin:top right;
+        width:100vh;
+        height:auto;
+        fill:var(--col-container);
+        transition:transform .5s ease;
+        // box-shadow:-1rem 0 1rem rgba(0,0,0,.1);
+        filter:drop-shadow(0 0 10px rgba(#000, .1))
+    }
+
+    &__background--active &__wave {
+        transform: translateX(-25rem) rotate(-90deg) rotateX(180deg);
+    }
+
+    &__content {
+        padding:$gutter * 2;
+        padding-left:0;
+        display:flex;
+        flex-direction:column;
+    }
+
+    &__cross {
+        align-self:flex-end;
+    }
+
+    &__list {
+        margin-top:$gutter;
+        font-size:2.4rem;
+        
+    }
+
+    &__item {
+        margin-top:$gutter;
+        text-transform:uppercase;
+        letter-spacing:1px;
+        font-weight:700;
+    }
+
+    &__link {
+        color:var(--col-text-2);
+        transition:all .3s ease;
+        display:block;
+        padding:1rem 2rem;
+        background-image:linear-gradient(to left, transparent 0%, transparent 50%, var(--col-primary) 50%, var(--col-primary) 100%);
+        background-size:220%;
+        background-position:99%;
+
+        &:hover {
+            color:var(--col-text-1);
+            transform:translateY(-3px);
+            color:#fff;
+            background-position:0%;
+        }
+    }
+
+
+
+
+}

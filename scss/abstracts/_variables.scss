@@ -38,6 +38,7 @@ $col-carousel: #720700;
 
     --col-input-placeholder: #{$text-light-placeholder};
     --col-text-1: #{$text-light-main};
+    --col-text-2: #{$text-light-main};
 
     --col-alt-bg: #{$alt-light-bg};
     --col-alt-bg2: #{$alt-light-bg2};
@@ -51,6 +52,7 @@ $col-carousel: #720700;
 
     --col-input-placeholder: #{$text-dark-placeholder};
     --col-text-1: #{$text-dark-main};
+    --col-text-2: #{$text-dark-main};
 
     --col-alt-bg: #{$alt-light-bg};
     --col-alt-bg2: #{$alt-light-bg2};
@@ -59,3 +61,5 @@ $col-carousel: #720700;
 $font-lato: 'Lato', sans-serif;
 $font-somar: 'Somar', 'regular';
 $font-somar-bold: 'Somar', 'bold';
+
+$gutter: 1.5rem;
