@@ -9,9 +9,13 @@ class Card extends Component {
         }
     }
 
+    pickOrder = () => {
+        this.props.onClick(this.props.id)
+    }
+
     render () {
         return (
-            <div className="card">
+            <div className="card" onClick={this.pickOrder}>
                 <div className="card__img" style={{backgroundImage: `url(${this.props.image})` }} />
                 <div className="card__content">
                     <h1 className="card__title">

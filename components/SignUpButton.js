@@ -1,6 +1,6 @@
 
-const SignUpButton = () => {
-    return <button className="btn__big">
+const SignUpButton = ({openModalEvent}) => {
+    return <button onClick={openModalEvent} className="btn__big">
         <span className="btn__big--front">
             Sign Up
         </span>

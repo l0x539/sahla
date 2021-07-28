@@ -37,7 +37,7 @@ export default function Home() {
     <Layout>
       <Head>
         <title>Sahla Business</title>
-        <meta name="description" content="Sahla business description" />
+        <meta name="description" content="Sahla is an online based business company and commercial trade center that provides services for its customers and help advertise, spread and attract customers to businesses." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Carousel swiping autoPlay swipeable showThumbs={false}>
@@ -48,7 +48,7 @@ export default function Home() {
               
           </div>
       </Carousel>
-      <SearchBar />
+      <SearchBar placeholder={"... إبحث عن خدمة أو منتج الآن"} />
       <div className="main-divider"></div>
       <div className="content__holder">
         <h2 className="content__title arabic">

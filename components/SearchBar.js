@@ -13,7 +13,7 @@ class SearchBar extends Component {
     render () {
         return (
             <div className="searchbar">
-                <input className="searchbar__input arabic" placeholder="... إبحث عن خدمة أو منتج الآن" />
+                <input className="searchbar__input arabic" placeholder={this.props.placeholder} />
                 <Search />
             </div>
         )

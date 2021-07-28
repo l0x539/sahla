@@ -116,4 +116,12 @@
 .dark-theme .main-divider {
     box-shadow: 0 0 2rem var(--col-primary);
 }
-  
+
+.mobile-drop {
+    display: none;
+    visibility: hidden;
+    @include respond(_768) {
+        display: block;
+        visibility: visible;        
+    }
+}

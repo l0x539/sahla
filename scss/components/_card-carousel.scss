@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
 
     @include respond(_992) { 
         flex-wrap: wrap;
@@ -18,6 +19,8 @@
         }
         width: 20em;
         transition: transform 50ms ease;
+        margin: 2rem 0;
+
 
     }
 

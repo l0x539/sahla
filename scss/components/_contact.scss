@@ -1,0 +1,41 @@
+.contact-editor {
+    height: 275px !important;
+    padding: 5px !important;
+    border-radius: 2px !important;
+    background: var(--col-input-container);
+}
+
+.contact-wrapper.rdw-editor-wrapper {
+    border:solid 1px $col-border-dark;
+    border-radius: 6px !important;
+}
+
+div .rdw-editor-toolbar {
+    border: 1px solid var(--col-border);
+    background: var(--col-input-container);
+}
+
+div .rdw-dropdown-wrapper {
+    background: var(--col-input-container);
+    border: 1px solid var(--col-border);
+}
+
+div .rdw-dropdown-wrapper:hover {
+    background: var(--col-input-container);
+    border: 1px solid var(--col-border);
+}
+
+
+div .rdw-option-wrapper {
+    border: 1px solid var(--col-border);
+    background: var(--col-input-container);
+}
+
+div .rdw-dropdown-optionwrapper {
+    border: 1px solid var(--col-border);
+    background: var(--col-input-container);
+}
+div .rdw-dropdown-optionwrapper:hover {
+    border: 1px solid var(--col-border);
+    background: rgb(255 255 255 / 19%);
+}

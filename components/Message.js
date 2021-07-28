@@ -11,11 +11,11 @@ class Message extends Component {
 
     render () {
         return (
-            <div className="message">
-                <h1 className="message__title">
+            <div className="sahla-message">
+                <h1 className="sahla-message__title">
                     {this.props.title}
                 </h1>
-                <p className="message__desc" >
+                <p className="sahla-message__desc" >
                     {this.props.desc}
                 </p>
             </div>

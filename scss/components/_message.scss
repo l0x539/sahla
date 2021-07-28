@@ -1,4 +1,4 @@
-.message {
+.sahla-message {
 
     display: flex;
     flex-direction: column;
@@ -15,5 +15,16 @@
 
     &__desc {
         font-size: 4rem;
+    }
+
+    &-box {
+        margin: 2rem 0;
+        
+    }
+
+    &-box h1 {
+        font-size: 4rem;
+        margin-bottom: 3rem;
+        text-align: center;
     }
 }

@@ -7,6 +7,10 @@ import Logo from "../assets/logo.svg";
 import LogoHolder from "../assets/LogoHolder.svg";
 import { Divide as Hamburger } from 'hamburger-react'
 import SidenavLink from "./SideNavLink";
+import Registration from "./Registration";
+import Modal from "./Modal";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import UserDropDown from "./UserDropDown";
 
 
 
@@ -25,6 +29,14 @@ class Nav extends Component {
             theme: localStorage.getItem('theme') || 'light'
         });
 
+    }
+
+    openModalEvent = () => {
+        this.setState({modalOpen: true})
+    }
+
+    closeModal = () => {
+        this.setState({modalOpen: false})
     }
 
     handleThemeClick = (e) => {
@@ -56,7 +68,9 @@ class Nav extends Component {
     render() {
         return (
             <>
+                <NotificationContainer/>
                 <div className={`sidenav__background ${this.state.sidenavActive ? 'sidenav__background--active' : ''}`} onClick={this.handleBackgroundClick}>
+
                     <nav className="sidenav">
                         <div className="sidenav__content">
                             <button className="nav__hamburger nav__hamburger--cross sidenav__cross" onClick={this.toggleSidenav}>
@@ -65,7 +79,7 @@ class Nav extends Component {
                                 <div className="bar"></div>
                             </button>
                             <ul className="sidenav__list normalize-list">
-                                <SignUpButton />
+                                {this.props.loggedIn?null:<SignUpButton openModalEvent={this.openModalEvent} />}
                                     <div className="nav__item nav__item--switch nav__item--switch-menu">
                                         <ThemeSwitch handleSwitchTheme={this.handleThemeClick} theme={this.state.theme} />
                                     </div>
@@ -104,14 +118,26 @@ class Nav extends Component {
                                 <ThemeSwitch handleSwitchTheme={this.handleThemeClick} theme={this.state.theme} />
                             </div>
                             <div className="nav__item">
-                                <SignUpButton />
+                                {this.props.loggedIn?null:<SignUpButton openModalEvent={this.openModalEvent} />}
+                                {this.props.loggedIn?<UserDropDown user={this.props.user} setLogout={this.props.setLogout} /> :null}
                             </div>
+                        </div>
+                        <div className="mobile-drop">
+                            {this.props.loggedIn?<UserDropDown user={this.props.user} setLogout={this.props.setLogout} /> :null}
                         </div>
                         <div className="menu">
                             <Hamburger onToggle={this.toggleSidenav} toggled={this.state.sidenavActive} />
                         </div>
                     </div>
                 </div>
+                <Modal
+                active={this.state.modalOpen}
+                size={{width: '50rem', height: '20rem'}}
+                centerContent={true}
+                title={<div className="heading-primary">Sign In</div>}
+                    closeModal={this.closeModal}>
+                    <Registration NotificationManager={NotificationManager} closeModal={this.closeModal} setLogin={this.props.setLogin} />
+                </Modal>
             </>
         )
     }

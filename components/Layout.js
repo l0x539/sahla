@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { get_user } from '../utils/requests';
 import Copyright from './Copyright';
 import Footer from './Footer';
 import Nav from './Nav';
@@ -7,14 +8,40 @@ class Layout extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            theme: 'light'
+            theme: 'light',
+            loggedIn: false
         }
     }
 
-    componentDidMount() {
+    async componentDidMount(){
         if(localStorage.getItem('theme')) {
             this.setState({ theme: localStorage.getItem('theme') })
         }
+        if(localStorage.getItem('jwt')) {
+            const user = await get_user(localStorage.getItem('jwt'))
+            if (!user.error) {
+                this.setState({ jwt: localStorage.getItem('jwt') })
+                this.setState({ user })
+                this.setState({ loggedIn: true })
+            } else {
+                this.setState({ jwt: undefined })
+                this.setState({ user:undefined })
+                this.setState({ loggedIn: false })
+            }
+        }
+    }
+
+    setLogout = () => {
+        this.setState({ jwt: undefined })
+        this.setState({ user:undefined })
+        this.setState({ loggedIn: false })
+    }
+
+    setLogin = (data) => {
+        this.setState({ jwt: data.jwt })
+        this.setState({ user: data.user })
+        this.setState({ loggedIn: true })
+        localStorage.setItem("jwt", data.jwt)
     }
     
     handleThemeUpdate = (theme) => {
@@ -24,7 +51,7 @@ class Layout extends Component {
     render () {
         return (
             <main className={`root ${this.state.theme}-theme`}>
-                <Nav handleThemeUpdate={this.handleThemeUpdate} />
+                <Nav handleThemeUpdate={this.handleThemeUpdate} setLogout={this.setLogout} user={this.state.user} loggedIn={this.state.loggedIn} setLogin={this.setLogin} user={this.state.user} />
                 <div className="content">
                     {this.props.children}
                 </div>

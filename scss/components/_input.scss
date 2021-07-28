@@ -1,0 +1,26 @@
+.input {
+    width:100%;
+    margin:$gutter 0;
+    display:grid;
+
+    &__main {
+        background: var(--col-container);
+        padding:1rem 1.5rem;
+        display:block;
+        width:100%;
+
+        border:solid 1px $col-border-dark;
+        border-radius:$radius;
+        color:var(--col-text-1);
+
+        font-size:1.6rem;
+
+        transition:border-color .1s ease;
+        margin-bottom: 30px;
+    }
+
+
+    &__main:focus {
+        border-color:var(--col-border-dark);
+    }
+} 
