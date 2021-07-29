@@ -21,7 +21,7 @@ class Layout extends Component {
             const user = await get_user(localStorage.getItem('jwt'))
             if (!user.error) {
                 this.setState({ jwt: localStorage.getItem('jwt') })
-                this.setState({ user })
+                this.setState({ user:user.data })
                 this.setState({ loggedIn: true })
             } else {
                 this.setState({ jwt: undefined })

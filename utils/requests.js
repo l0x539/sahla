@@ -4,6 +4,38 @@ import axios from "axios";
 
 const API_HOST = "http://localhost:1337";
 
+export const get_product = async (id) => {
+    let response = await axios.get(API_HOST+`/products/${id}`)
+                    .then(res => {
+                        console.log("u:", res);
+                        let obj = {};
+                        switch (res.status) {
+                            case 200:
+                                obj.error = false;
+                                obj.data = res.data
+                                break
+                            case 501:
+                                obj.error = true;
+                                obj.message = res.error
+                                break
+                            default:
+                                obj.error = true;
+                                obj.message = "Somehing went wrong!"
+                                break;
+                            }
+            
+                            return obj;
+                        }
+                    ).catch(err => {
+                        console.log("u:", err);
+
+                        return {
+                            error: true,
+                            message: err.response.data.message
+                        }
+                    })
+    return response;
+}
 
 export const contact_us = async (title, email, content, recaptcha) => {
     let response = await axios({

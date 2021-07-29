@@ -32,7 +32,6 @@ export default function Products() {
 
   const closeModal = () => {
     setModalOpen(false)
-    setPreview({})
   }
 
   return (
@@ -56,9 +55,10 @@ export default function Products() {
           BackdropProps={{
           timeout: 500,
           }}
+          container={() => document.getElementsByClassName('root')[0]}
       >
           <Fade in={modalOpen}>
-            <Preview order={preview} />
+            <Preview order={preview} service={'product'} />
           </Fade>
       </Modal>
     </Layout>

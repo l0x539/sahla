@@ -12,13 +12,10 @@ const UserDropDown = ({setLogout, user}) => {
         setLogout()
     }
 
-
-
-
     return (
         <Dropdown
           inline
-          trigger={<><Avatar round={true} size="50" src={ user.avatar&&user.avatar.length>0?user.avatar: `https://robohash.org/${user.id}.png`} /></>}
+          trigger={<><Avatar round={true} size="50" src={ user.avatar&&user.avatar.length>0?user.avatar: `https://avatars.dicebear.com/api/avataaars/${user.id}.svg`} /></>}
         >
             <Dropdown.Menu>
                 <Link href={'/profile'}>
