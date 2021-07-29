@@ -4,8 +4,6 @@ import SearchBar from "./SearchBar";
 
 const BEST_PRODUCTS = [
     { id: 1, rating: 4.5, title: 'حواسيب غايمنغ', description: 'حواسيب غايمنغ حواسيب غايمنغ', image: '/assets/gaming-desktop-pc-custom-built-cpu--500x500.jpg' },
-    { id: 2, rating: 4.5, title: 'منتجات شاور', description: 'منتجات شاور منتجات شاور منتجات شاور', image: '/assets/rsz_bath_and_shower_products.jpg' },
-    { id: 3, rating: 4.5, title: 'ساعات يد لوكسور', description: 'ساعات يد لوكسور ساعات يد لوكسور ', image: '/assets/twin_1.jpg.transform.generic-cards_image_335_2x.jpg' },
     { id: 4, rating: 4.5, title: 'حواسيب غايمنغ', description: 'حواسيب غايمنغ حواسيب غايمنغ', image: '/assets/gaming-desktop-pc-custom-built-cpu--500x500.jpg' },
     { id: 5, rating: 4.5, title: 'منتجات شاور', description: 'منتجات شاور منتجات شاور منتجات شاور', image: '/assets/rsz_bath_and_shower_products.jpg' },
     { id: 6, rating: 4.5, title: 'ساعات يد لوكسور', description: 'ساعات يد لوكسور ساعات يد لوكسور ', image: '/assets/twin_1.jpg.transform.generic-cards_image_335_2x.jpg' },
@@ -30,7 +28,7 @@ class ProductsList extends Component {
     }
 
     previewProduct = (id) => {
-        BEST_PRODUCTS.map((v, i) => {
+        this.props.products.map((v, i) => {
 
             if (id === v.id) {
                 this.props.preview(v)
@@ -43,7 +41,7 @@ class ProductsList extends Component {
             <>
                 <SearchBar placeholder={"... إبحث عن منتج الآن"} />
                 <div className="main-divider"></div>
-                <CardCarousel preview={this.previewProduct} items={BEST_PRODUCTS} />
+                <CardCarousel preview={this.previewProduct} items={this.props.products} />
             </>
         )
     }

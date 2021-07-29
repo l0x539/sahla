@@ -11,6 +11,7 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SettingsOverscanIcon from '@material-ui/icons/SettingsOverscan';
+import { API_HOST } from '../utils/constants';
 
 
 
@@ -72,7 +73,7 @@ export const Preview = ({ order, service }) => {
     return <Card className={classes.root}>
                     <CardHeader
                         avatar={
-                        <Avatar aria-label="recipe" src={order.user?.avatar&&order.user?.avatar.length>0?order.user?.avatar: `https://avatars.dicebear.com/api/avataaars/${order.user?.id}.svg`}>
+                        <Avatar aria-label="recipe" src={order.user?.avatar&&order.user?.avatar.url?.length>0?order.user?.avatar?.url: `https://avatars.dicebear.com/api/avataaars/${order.user?.id}.svg`}>
                             {order?.user?.username.toUpperCase()}
                         </Avatar>
                         }
@@ -89,11 +90,18 @@ export const Preview = ({ order, service }) => {
                     />
                     {/* Carousel */}
                     <Carousel swiping  swipeable>
-                        <div className="carousel__img" style={{backgroundImage: `url(${order?.image})`, height: 300, backgroundPosition: 'center', backgroundSize: 'cover'}}>
-                          
-                        </div>
-                        <div className="carousel__img" style={{backgroundImage: `url(${order?.image})`, height: 300, backgroundPosition: 'center', backgroundSize: 'cover'}}>
-                        </div>
+                      {order?.images?.length?
+                        order.images.map((v, i) => {
+                          console.log("ooo", v);
+                          return (
+                            <div className="carousel__img" style={{backgroundImage: `url(${API_HOST + v.url})`, height: 300, backgroundPosition: 'center', backgroundSize: 'cover'}}>
+                            </div>
+                          )
+                        })
+                      :
+                          <div className="carousel__img" style={{backgroundImage: `url(http://beepeers.com/assets/images/commerces/default-image.jpg)`, height: 300, backgroundPosition: 'center', backgroundSize: 'cover'}}>
+                          </div>
+                      }
                     </Carousel>
                     <CardContent className={classes.cardContent} disableSpacing>
                         <Rating className={classes.rating} name="read-only" value={order?.rating} readOnly precision={0.1} />

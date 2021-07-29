@@ -21,3 +21,8 @@
     @if $breakpoint == _1200 { @media only screen and (max-width:75em) {  @content;   } } // 1200px
     @if $breakpoint == _1800 { @media only screen and (min-width:112.5em) {  @content;   } } // 1800px
 }
+
+@mixin background-overlay {
+    backdrop-filter:blur(5px);
+    background:rgba(#000, .5);
+}

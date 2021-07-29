@@ -1,0 +1,70 @@
+.info-card {
+    @include card(var(--col-container));
+    padding:0;
+    align-self:start;
+    border-color: rgb(197, 197, 197);
+
+    &__grid {
+        display:grid;
+        grid-template-columns:repeat(6, 1fr);
+        grid-gap:$gutter;
+    }
+
+    &--100 {
+        grid-column:1 / -1;
+    }
+
+    &--50 {
+        grid-column:span 3;
+
+        @include respond(_992) {
+            grid-column:span 6;
+        }
+    }
+    &--33 {
+        grid-column:span 2;
+
+        @include respond(_992) {
+            grid-column:span 3;
+            &:last-of-type {
+                grid-column:1 / -1;
+            }
+        }
+
+        @include respond(_576) {
+            grid-column:1 / -1;
+        }
+    }
+
+    &--66 {
+        grid-column:span 4;
+
+        @include respond(_992) {
+            grid-column:span 3;
+            &:last-of-type {
+                grid-column:1 / -1;
+            }
+        }
+
+        @include respond(_576) {
+            grid-column:1 / -1;
+        }
+    }
+
+    &__header {
+        text-transform:uppercase;
+        letter-spacing:1px;
+        font-size:1.6rem;
+        
+        color:var(--col-text-2);
+        border-bottom:1px solid var(--col-border-light);
+        padding:$gutter;
+        line-height:1;
+    }
+
+    &__content {
+        padding:$gutter;
+    }
+
+    overflow: unset;
+}

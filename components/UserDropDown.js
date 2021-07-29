@@ -6,16 +6,18 @@ import Avatar from 'react-avatar';
 
 
 
-const UserDropDown = ({setLogout, user}) => {    
+const UserDropDown = ({setLogout, user, API_HOST}) => {    
 
     const logOutHandle = () => {
         setLogout()
     }
 
+    console.log("user1", API_HOST + user.avatar.url);
+
     return (
         <Dropdown
           inline
-          trigger={<><Avatar round={true} size="50" src={ user.avatar&&user.avatar.length>0?user.avatar: `https://avatars.dicebear.com/api/avataaars/${user.id}.svg`} /></>}
+          trigger={<><Avatar round={true} size="50" src={ user.avatar&&user.avatar.url?.length>0?API_HOST + user.avatar.url: `https://avatars.dicebear.com/api/avataaars/${user.id}.svg`} /></>}
         >
             <Dropdown.Menu>
                 <Link href={'/profile'}>

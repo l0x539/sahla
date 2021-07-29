@@ -1,8 +1,10 @@
 import { Component } from 'react';
-import { get_user } from '../utils/requests';
+import { API_HOST } from '../utils/constants';
+import { get_me, get_user } from '../utils/requests';
 import Copyright from './Copyright';
 import Footer from './Footer';
 import Nav from './Nav';
+
 
 class Layout extends Component {
     constructor(props) {
@@ -18,7 +20,10 @@ class Layout extends Component {
             this.setState({ theme: localStorage.getItem('theme') })
         }
         if(localStorage.getItem('jwt')) {
-            const user = await get_user(localStorage.getItem('jwt'))
+            const me = await get_me(localStorage.getItem('jwt'))
+            const user = await get_user(localStorage.getItem('jwt'), me.data.id)
+            
+            console.log("main user", user);
             if (!user.error) {
                 this.setState({ jwt: localStorage.getItem('jwt') })
                 this.setState({ user:user.data })
@@ -51,7 +56,7 @@ class Layout extends Component {
     render () {
         return (
             <main className={`root ${this.state.theme}-theme`}>
-                <Nav handleThemeUpdate={this.handleThemeUpdate} setLogout={this.setLogout} user={this.state.user} loggedIn={this.state.loggedIn} setLogin={this.setLogin} user={this.state.user} />
+                <Nav handleThemeUpdate={this.handleThemeUpdate} setLogout={this.setLogout} user={this.state.user} loggedIn={this.state.loggedIn} setLogin={this.setLogin} user={this.state.user} API_HOST={API_HOST} />
                 <div className="content">
                     {this.props.children}
                 </div>

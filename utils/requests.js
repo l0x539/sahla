@@ -1,13 +1,11 @@
 import axios from "axios";
+import { API_HOST } from "./constants";
 
 // const API_HOST = "https://api.sahlabusiness.com";
 
-const API_HOST = "http://localhost:1337";
-
-export const get_product = async (id) => {
-    let response = await axios.get(API_HOST+`/products/${id}`)
+export const get_products_user = async (user_id, start=0, limit=32) => {
+    let response = await axios.get(API_HOST+`/products?user_id=${user_id}&_start=${start}&_limit=${limit}`)
                     .then(res => {
-                        console.log("u:", res);
                         let obj = {};
                         switch (res.status) {
                             case 200:
@@ -27,7 +25,37 @@ export const get_product = async (id) => {
                             return obj;
                         }
                     ).catch(err => {
-                        console.log("u:", err);
+
+                        return {
+                            error: true,
+                            message: err.response.data.message
+                        }
+                    })
+    return response;
+}
+
+export const get_product = async (id) => {
+    let response = await axios.get(API_HOST+`/products/${id}`)
+                    .then(res => {
+                        let obj = {};
+                        switch (res.status) {
+                            case 200:
+                                obj.error = false;
+                                obj.data = res.data
+                                break
+                            case 501:
+                                obj.error = true;
+                                obj.message = res.error
+                                break
+                            default:
+                                obj.error = true;
+                                obj.message = "Somehing went wrong!"
+                                break;
+                            }
+            
+                            return obj;
+                        }
+                    ).catch(err => {
 
                         return {
                             error: true,
@@ -165,7 +193,7 @@ export const login = async (email, password) => {
     return response;
 }
 
-export const get_user = async (token) => {
+export const get_me = async (token) => {
     let response = axios.get(API_HOST + "/users/me",
         {
             headers: {
@@ -200,4 +228,143 @@ export const get_user = async (token) => {
     })
 
     return response
+}
+
+export const get_user = async (token, id) => {
+    let response = axios.get(API_HOST + "/users/"+id,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    ).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+
+    return response
+}
+
+export const upload_image = async(formData, config) => {
+    const response = await axios.post(API_HOST + '/upload', formData, config).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+    
+    return response;;
+}
+
+
+export const upload_avatar = async(data, config, user_id) => {
+    const response = await axios.put(API_HOST + '/users/' + user_id, data, config).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+    
+    return response;;
+}
+
+export const update_profile = async (data, token, id) => {
+    let response = await axios({
+        method: "PUT",
+        url: API_HOST +"/users/"+id,
+        data,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    }).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+    
+    return response;
 }

@@ -119,11 +119,11 @@ class Nav extends Component {
                             </div>
                             <div className="nav__item">
                                 {this.props.loggedIn?null:<SignUpButton openModalEvent={this.openModalEvent} />}
-                                {this.props.loggedIn?<UserDropDown user={this.props.user} setLogout={this.props.setLogout} /> :null}
+                                {this.props.loggedIn?<UserDropDown user={this.props.user} setLogout={this.props.setLogout} API_HOST={this.props.API_HOST} /> :null}
                             </div>
                         </div>
                         <div className="mobile-drop">
-                            {this.props.loggedIn?<UserDropDown user={this.props.user} setLogout={this.props.setLogout} /> :null}
+                            {this.props.loggedIn?<UserDropDown user={this.props.user} setLogout={this.props.setLogout} API_HOST={this.props.API_HOST}  /> :null}
                         </div>
                         <div className="menu">
                             <Hamburger onToggle={this.toggleSidenav} toggled={this.state.sidenavActive} />

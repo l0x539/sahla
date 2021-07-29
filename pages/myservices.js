@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import Message from '../components/Message'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function MyServices() {
   return (

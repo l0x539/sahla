@@ -1,0 +1,23 @@
+.home {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    &__desc {
+        margin-top:$gutter;
+        .heading-primary {
+            @include respond(_576) {
+                font-size:2.8rem;
+            }
+        }
+    }
+}
+
+.video {
+    &__frame {
+        width: 560px;
+        height: 315px;
+        @include respond(_768) {
+            height: auto;
+            width: auto;
+        }
+    }
+}

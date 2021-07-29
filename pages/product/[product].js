@@ -12,9 +12,8 @@ import { getProduct } from '../../utils/queries'
 
 import Rating from '@material-ui/lab/Rating';
 import { Typography } from '@material-ui/core';
+import { API_HOST } from '../../utils/constants';
 
-
-const API_HOST = "http://localhost:1337"
 
 const Product = () => {
     console.log("product");
@@ -50,27 +49,28 @@ const Product = () => {
             prod = p.data
         }
     }
-
+    var arabic = /[\u0600-\u06FF]/;
     return (
         <Layout>
         <Head>
-            <title>Product | Sahla Business</title>
+            <title>{prod.title} | Sahla Business</title>
             <meta name="description" content="Sahla business Products, search through Sahla available services nearby you." />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <div className="show">
-            <div className="show-header">
+        <div className="show" >
+            <div className="show-header" dir={arabic.test(prod.title)?"rtl":"ltr"}>
                 <h1 className="show-title">{prod.title}</h1>
                 <div className="show-header--right">
                     <span className="show-user">{prod.user.username}</span>
-                    <Avatar round={true} size="50" src={ prod.user.avatar&&prod.user.avatar.length>0?prod.user.avatar: `https://avatars.dicebear.com/api/avataaars/${prod.user?.id}.svg`} />
+                    <Avatar round={true} size="50" src={ prod.user.avatar&&prod.user.avatar?.url?.length>0?API_HOST+prod.user.avatar?.url: `https://avatars.dicebear.com/api/avataaars/${prod.user?.id}.svg`} />
                 </div>
             </div>
             <Carousel swiping  swipeable height={"20rem"}>
                 {prod.images?.map((v, i)=> {
+                    console.log("v", v);
                     return (
                         // <img src={API_HOST+(v.formats.medium?v.formats.medium.url:v.formats.small.url)} />
-                        <div key={i} className="carousel__img" style={{backgroundImage: `url(${API_HOST+(v.formats.medium?v.formats.medium.url:v.formats.small.url)})`, height: 500, backgroundPosition: 'center', backgroundSize: 'contain', backgroundRepeat: "no-repeat", backgroundColor: "rgb(51, 55, 64)"}}>
+                        <div key={i} className="carousel__img" style={{backgroundImage: `url(${API_HOST+(v.formats?(v.formats.medium?v.formats.medium.url:(v.formats.small?v.formats.small.url:v.url)):v.url)})`, height: 500, backgroundPosition: 'center', backgroundSize: 'contain', backgroundRepeat: "no-repeat", backgroundColor: "rgb(51, 55, 64)"}}>
                             
                         </div>
                     )
@@ -83,10 +83,10 @@ const Product = () => {
                         {prod.orders} orders
                     </Typography>
                 </div>
-                <p className="show-paragraph">
+                <p className="show-paragraph" dir={arabic.test(prod.description)?"rtl":"ltr"}>
                     {prod.description}
                 </p>
-                <p className="show-paragraph--detail">
+                <p className="show-paragraph--detail" dir={arabic.test(prod.detailsDesc)?"rtl":"ltr"}>
                     {prod.detailsDesc}
                 </p>
             </div>
