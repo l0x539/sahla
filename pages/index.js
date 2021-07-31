@@ -18,86 +18,137 @@ import DesignThinking from '../assets/design-thinking.svg'
 import Mechanic from '../assets/mechanic.svg'
 import Trade from '../assets/trade.svg'
 import Site from '../assets/web-site.svg'
+import { useRouter, withRouter } from 'next/router';
+import { get_language } from '../utils/requests';
+import { API_HOST } from '../utils/constants';
+
 
 
 const BEST_SERVICES = [
-  { title: 'التعليق الصوتي', desc: 'التعليق الصوتي التعليق الصوتي', image: '/assets/microphone-with-pop-filter-shock-mount-anti-vibration-note-stand-tripod-music-score-studio-production.jpg' },
-  { title: 'الجواد للمنتاج', desc: 'الجواد للمنتاج الجواد للمنتاج', image: '/assets/back-view-video-editor-using-computer.jpg' },
-  { title: 'الهندسة الصوتية', desc: 'الهندسة الصوتية الهندسة الصوتية', image: '/assets/website-builder-workplace-interior-3d-rendering.jpg' },
+  { id: 1, title: 'التعليق الصوتي', desc: 'التعليق الصوتي التعليق الصوتي', image: '/assets/microphone-with-pop-filter-shock-mount-anti-vibration-note-stand-tripod-music-score-studio-production.jpg' },
+  { id: 1, title: 'الجواد للمنتاج', desc: 'الجواد للمنتاج الجواد للمنتاج', image: '/assets/back-view-video-editor-using-computer.jpg' },
+  { id: 1, title: 'الهندسة الصوتية', desc: 'الهندسة الصوتية الهندسة الصوتية', image: '/assets/website-builder-workplace-interior-3d-rendering.jpg' },
 ]
 
 const BEST_PRODUCTS = [
-  { title: 'حواسيب غايمنغ', desc: 'حواسيب غايمنغ حواسيب غايمنغ', image: '/assets/gaming-desktop-pc-custom-built-cpu--500x500.jpg' },
-  { title: 'منتجات شاور', desc: 'منتجات شاور منتجات شاور منتجات شاور', image: '/assets/rsz_bath_and_shower_products.jpg' },
-  { title: 'ساعات يد لوكسور', desc: 'ساعات يد لوكسور ساعات يد لوكسور ', image: '/assets/twin_1.jpg.transform.generic-cards_image_335_2x.jpg' },
+  { id: 1, title: 'حواسيب غايمنغ', desc: 'حواسيب غايمنغ حواسيب غايمنغ', image: '/assets/gaming-desktop-pc-custom-built-cpu--500x500.jpg' },
+  { id: 1, title: 'منتجات شاور', desc: 'منتجات شاور منتجات شاور منتجات شاور', image: '/assets/rsz_bath_and_shower_products.jpg' },
+  { id: 1, title: 'ساعات يد لوكسور', desc: 'ساعات يد لوكسور ساعات يد لوكسور ', image: '/assets/twin_1.jpg.transform.generic-cards_image_335_2x.jpg' },
 ]
 
-export default function Home() {
+const SVGS = [
+                <Web />,
+                <Site />,
+                <Trade />,
+                <Bullhorn />,
+                <Mechanic />,
+                <Architect />,
+                <Accessoies />,
+                <DesignThinking />,
+              ]
+
+function Home({
+    english,
+    english_navbar,
+    english_footer,
+    arabic,
+    arabic_navbar,
+    arabic_footer
+  }) {
+  const router = useRouter();
+
+  let language = english;
+  let navbarLang = english_navbar;
+  let footerLang = english_footer;
+  let isArabic = false
+  if (typeof window !== 'undefined') {
+    localStorage.getItem("lang")
+    isArabic = true
+    switch (localStorage.getItem("lang")) {
+      case "ar-DZ":
+        language = arabic;
+        navbarLang = arabic_navbar;
+        footerLang = arabic_footer;
+        break;
+      default:
+        break;
+    }
+  }
+
+  const goProduct = (id) => {
+    router.push(`/product/${id}`)
+  }
+  const goService = (id) => {
+    router.push(`/service/${id}`)
+  }
   return (
-    <Layout>
+    <Layout navbarLang={navbarLang} footerLang={footerLang} >
       <Head>
-        <title>Sahla Business</title>
-        <meta name="description" content="Sahla is an online based business company and commercial trade center that provides services for its customers and help advertise, spread and attract customers to businesses." />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{language?language.Title:'Sahla Business'}</title>
+        <meta name="description" content={language?language.description:"Sahla is an online based business company and commercial trade center that provides services for its customers and help advertise, spread and attract customers to businesses."} />
+        <link rel="icon" href={language?(API_HOST + language.favicon.url):"/favicon.ico"} />
       </Head>
       <Carousel swiping autoPlay swipeable showThumbs={false}>
-          <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}} >
-            <div className="img_cont"  />
-          </div>
-          <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}}>
-              
-          </div>
+        {
+          language?
+          language.carousel_images.map((v, i) => {
+            return (<div key={i} className="carousel__img" style={{backgroundImage: `url(${API_HOST+v.url})`}} >
+                    <div className="img_cont"  />
+                </div>)
+          })
+          :<>
+            <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}} >
+              <div className="img_cont"  />
+            </div>
+            <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}}>
+                
+            </div>
+          </>
+        }
       </Carousel>
-      <SearchBar placeholder={"... إبحث عن خدمة أو منتج الآن"} />
+      <SearchBar isArabic={isArabic?true:false} placeholder={language?language.search_pleaceholder:"... إبحث عن خدمة أو منتج الآن"} />
       <div className="main-divider"></div>
       <div className="content__holder">
-        <h2 className="content__title arabic">
-          {"أفضل الخدمات"}
+        <h2 className={`content__title ${isArabic?"arabic":""}`}>
+          {language?language.services_title:"أفضل الخدمات"}
         </h2>
-        <CardCarousel items={BEST_SERVICES} />
+        <CardCarousel preview={goService} items={BEST_SERVICES} />
       </div>
       <div className="main-divider"></div>
       <div className="content__holder">
-        <h2 className="content__title arabic">
-          {"أفضل المنتجات"}
+        <h2 className={`content__title ${isArabic?"arabic":""}`}>
+          {language?language.products_title:"أفضل المنتجات"}
         </h2>
-        <CardCarousel items={BEST_PRODUCTS} />
+        <CardCarousel preview={goProduct} items={BEST_PRODUCTS} />
       </div>
       <div className="main-divider"></div>
 
       <div className="content__darker-holder">
         <div className="content">
-          <h2 className="content__darker-holder-title arabic">
-            {"كيف تنظم للعمل مع سهلة"}
+          <h2 className={`content__darker-holder-title${isArabic?"arabic":""}`}>
+            {language?language.how_to_join:"كيف تنظم للعمل مع سهلة"}
           </h2>
           <div className="content__fr">
-            <Paper >
-              <div className="paper__circle">
-                <p>1</p>
-              </div>
-            </Paper>
-            <Paper otherSide={
-              <>
-                <h4 className="paper__title">
-                  {'أدخل منتجك أو خدمتك'}
-                </h4>
-                <div className="paper__desc">
-                  <p>{'أدخل نوع المنتج أو الخدمة -'}</p>
-                  <p>{'أدخل معلومات و صور عن المنتج أو الخدمة -'}</p>
-                  <p>{'إختر نوع التعاقد مع سهلة -'}</p>
-                  <p>{'تحقق من صحة المعلومات -'}</p>
-                </div>
-              </>
-            } >
-              <div className="paper__circle">
-                <p>2</p>
-              </div>
-            </Paper>
-            <Paper >
-              <div className="paper__circle">
-                <p>3</p>
-              </div>
-            </Paper>
+            {[1, 2, 3].map((v, i) => {
+              return (
+                <Paper key={i} isArabic={isArabic} otherSide={
+                  <>
+                    <h4 className="paper__title">
+                      {language[`join_step${v}_title`]}
+                    </h4>
+                    <div className="paper__desc">
+                      {
+                        language[`join_step${v}_desc`].split("\n").map((v, i) => <p key={i}>{v}</p>)
+                      }
+                    </div>
+                  </>
+                } >
+                  <div className="paper__circle">
+                    <p>{v}</p>
+                  </div>
+                </Paper>
+              )
+            })}
           </div>
 
         </div>
@@ -106,24 +157,51 @@ export default function Home() {
 
       <div className="content__image-holder">
         <div className="content">
-            <h2 className="content__darker-holder-title arabic">
-              {"التصنيفات"}
+            <h2 className={`content__darker-holder-title ${isArabic?"arabic":""}`}>
+              {language.categories_title}
             </h2>
-            <div className="content__image-holder__categories">
-              <Category title={'برمجة المواقع'} desc={'برمجة المواقع الإلكترونية وإصلاح مشاكل المواقع'} svg={<Web />} />
-              <Category title={'تصميم المواقع'} desc={'تصميم المواقع و تحويل الأفكار إلى الواقع'} svg={<Site />} />
-              <Category title={'البيع و الشراء'} desc={'منتجات معروضة على سهلة, تفقد أحسن المنتجات'} svg={<Trade />} />
-              <Category title={'الماركتينغ'} desc={'خدمات التسويق و الماركتينغ, أفضل المسوقين'} svg={<Bullhorn />} />
-            </div>
-            <div className="content__image-holder__categories">
-              <Category title={'إصلاح السيارات'} desc={'أفضل صالحي السيارات في منطقتك'} svg={<Mechanic />} />
-              <Category title={'البناء و التصميم'} desc={'أفضل البنائين و أقربهم إليك'} svg={<Architect />} />
-              <Category title={'منتجات للبيع'} desc={'منتجات معروضة للبيع من محالات قريبة إللى موقعك'} svg={<Accessoies />} />
-              <Category title={'التصميم'} desc={'مختلف التصاميم, إحصل على مصممي شعارات و أقمصة ...إلخ   '} svg={<DesignThinking />} />
-            </div>
+              <div className="content__image-holder__categories">
+                {language.categories.filter((_, i) => i <4).map((v, i) => {
+                  return (
+                      <Category key={i} isArabic={isArabic} title={v.title} desc={v.description} svg={SVGS[i]} />
+                  )
+                })}
+              </div>
+              <div className="content__image-holder__categories">
+                {language.categories.filter((_, i) => i >=4).map((v, i) => {
+                  return (
+                      <Category key={i+4} isArabic={isArabic} title={v.title} desc={v.description} svg={SVGS[i+4]} />
+                  )
+                })}
+              </div>
+            
         </div>
       </div>
 
     </Layout>
   )
+}
+
+export default withRouter(Home);
+
+export async function getStaticProps(context) {
+
+	let english = (await get_language("home"))?.data;
+	let english_navbar = (await get_language("navbar"))?.data;
+	let english_footer = (await get_language("footer"))?.data;
+	let arabic = (await get_language("home", "ar-DZ"))?.data;
+	let arabic_navbar = (await get_language("navbar", "ar-DZ"))?.data;
+	let arabic_footer = (await get_language("footer", "ar-DZ"))?.data;
+
+	return {
+		props: {
+			english:english??null,
+      english_navbar:english_navbar??null,
+      english_footer:english_footer??null,
+      arabic:arabic??null,
+      arabic_navbar:arabic_navbar??null,
+      arabic_footer:arabic_footer??null
+		},
+		revalidate: 5
+	}
 }

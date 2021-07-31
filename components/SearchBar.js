@@ -10,10 +10,19 @@ class SearchBar extends Component {
         }
     }
 
+    componentDidMount () {
+        this.setState({isArabic: /[\u0600-\u06FF]/.test(this.props.placeholder)})
+    }
+
+    handleSearchQuery = (e) => {
+        this.props.setSearch(e.target.value)
+    }
+
     render () {
+        const {placeholder} = this.props
         return (
-            <div className="searchbar">
-                <input className="searchbar__input arabic" placeholder={this.props.placeholder} />
+            <div className={`searchbar ${this.state.isArabic?"arabic":""}`}>
+                <input className={`searchbar__input ${this.state.isArabic?"arabic":""}`} placeholder={placeholder} onChange={this.handleSearchQuery} />
                 <Search />
             </div>
         )

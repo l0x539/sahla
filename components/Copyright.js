@@ -1,7 +1,7 @@
-const Copyright = () => {
-    return <div className="copyright">
+const Copyright = ({copyright, isArabic}) => {
+    return <div className={`copyright ${isArabic?"arabic":""}`}>
                 <div className="copyright__banner" >
-                <span>{"COPYRIGHT © 2021 Sahla Business"}</span>
+                <span>{copyright}</span>
             </div>
         </div>
 }

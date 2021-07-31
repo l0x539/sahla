@@ -9,7 +9,7 @@
     &__title {
         text-align: center;
         margin-bottom: 1rem;
-        
+        font-size: 5rem;       
 
     }
     &__title.arabic {
@@ -24,6 +24,8 @@
             text-align: center;
             margin-bottom: 1rem;
             color: white;
+            font-size: 3.6rem;
+            padding: 0.5rem 0;
     
         }
         &-title.arabic {
@@ -52,7 +54,7 @@
         &__categories {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: center;
             @include respond(_992) {
               flex-wrap: wrap;
             margin: 0;
@@ -124,4 +126,30 @@
         display: block;
         visibility: visible;        
     }
+}
+
+.loader--spinner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.loader--spinner svg {
+    width: 3rem;
+    height: 3rem;    
+}
+
+.av-height {
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.center {
+    margin: auto;
+}
+
+.transit-box-width {
+    transition: width .3;
+    max-width: 70rem;
+
 }

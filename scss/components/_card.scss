@@ -1,10 +1,35 @@
 .card {
+    background-color: var(--col-container);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 0px 0px 18px 2px #0000009e;
+    // box-shadow: 0px 0px 18px 2px #0000009e;
+    // box-shadow: 0px 0px 18px 2px #00000000;
+    // box-shadow: 0px 0px 6px 0px #00000073;
+    box-shadow: 0 2px 4px 0 var(--col-shadow);
+    transition: transform 50ms ease, box-shadow .4s ease;
+
+
+    &__check {
+        display: none;
+        visibility: hidden;
+        margin: 1rem;
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+        @include respond(_1100) {
+            display: block;
+            visibility: visible;
+        }
+    }
+    
+    &__check:checked {
+        display: block;
+        visibility: visible;
+    }
+    
 
     &__img {
         width: 100%;
@@ -16,13 +41,13 @@
 
     &__title {
         font-size: 2em;
-        font-family: $font-somar-bold;
         font-weight: bold;
     }
     &__title-bar {
         width: 100%;
         margin-top: -18px;
-        border-top: 15px solid $button-color;
+        border-top: 12px solid $button-color;
+        border-radius: 4px;
     }
 
     &__content {
@@ -32,13 +57,36 @@
         margin-bottom: 1rem;
 
     }
-
+    &__content.arabic {
+        font-family: $font-somar;
+    }
     &__desc {
+        word-spacing: 6px;
         text-align: center;
         margin: 0 3rem;
-        font-family: $font-somar;
         height: 3rem;
        overflow: hidden;
+       max-width: 24rem;
+    }
+
+    &__desc--preview {
+        text-align: center;
+        margin: 0 3rem;
+        font-family: "Somar", "regular";
+        min-height: 3rem;
+        overflow: hidden;
     }
     
+}
+
+.card:hover {
+    transform: scale(1.1);
+    // box-shadow: 0px 0px 18px 2px #0000009e;
+    box-shadow: 0px 0px 18px 2px var(--col-shadow-hover);
+    
+}
+
+.card:hover .card__check {
+    display: block;
+    visibility: visible;
 }

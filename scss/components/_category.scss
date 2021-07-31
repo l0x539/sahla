@@ -12,6 +12,8 @@
     cursor: pointer;
     transition: transform 50ms ease;
 
+    overflow: hidden;
+
     &__text {
         
         display: flex;
@@ -26,12 +28,26 @@
     }
 
     &__title {
-        font-size: 2.6rem;
+        word-break: break-all;
+        line-height: 18px;
+        font-size: 1.5rem;
+        padding: 1rem 0;
     }
 
     .arabic &__title {
         font-family: $font-somar;
+        font-size: 2.6rem;
+
     }
+
+    &__desc {
+        font-size: 1.1rem;
+    }
+
+    .arabic &__desc {
+        font-size: 1.5rem;
+    }
+
 
     &__svg {
         padding: 1rem;

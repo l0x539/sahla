@@ -15,4 +15,9 @@
         vertical-align: middle;
         line-height: normal;
     }
+
+    &.arabic &__banner {
+        font-family: $font-somar;
+        font-size: 18px;
+    }
 }

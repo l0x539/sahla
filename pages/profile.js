@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
-import { useRouter } from 'next/router'
+import { useRouter, withRouter } from 'next/router'
 import { getUser } from '../utils/queries';
 
 import Loader from 'react-loader-spinner';
@@ -9,10 +9,37 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import ProgressBar from "@ramonak/react-progress-bar";
 import UserProfile from "../components/Profile";
 import { useState } from 'react';
+import { get_language } from '../utils/requests'
 
 import Message from '../components/Message'
 
-export default function Profile() {
+function Profile({
+    english,
+    english_navbar,
+    english_footer,
+    arabic,
+    arabic_navbar,
+    arabic_footer
+  }) {
+
+  let language = english;
+  let navbarLang = english_navbar;
+  let footerLang = english_footer;
+  let isArabic = false
+  if (typeof window !== 'undefined') {
+    localStorage.getItem("lang")
+    isArabic = true
+    switch (localStorage.getItem("lang")) {
+      case "ar-DZ":
+        language = arabic;
+        navbarLang = arabic_navbar;
+        footerLang = arabic_footer;
+        break;
+      default:
+        break;
+    }
+  }
+
   const router = useRouter()
   const [progress, setProgress] = useState(false)
 
@@ -20,7 +47,6 @@ export default function Profile() {
 
   if (typeof window !== 'undefined') {
     const token = localStorage.getItem("jwt");
-    console.log(token);
     if (!token) {
       router.push(`/`)
       return ""
@@ -43,7 +69,6 @@ export default function Profile() {
     };
 
     const result = await upload_image(formData, config)
-    console.log("result", result);
     await upload_avatar({avatar: result.data[0].id}, {headers: { 
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -100,7 +125,7 @@ export default function Profile() {
   }
 
   return (
-    <Layout>
+    <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
       <Head>
         <title>Profile | Sahla Business</title>
         <meta name="description" content="Sahla business description" />
@@ -145,4 +170,28 @@ export default function Profile() {
       
     </Layout>
   )
+}
+
+export default withRouter(Profile);
+
+export async function getStaticProps(context) {
+
+	let english = (await get_language("home"))?.data;
+	let english_navbar = (await get_language("navbar"))?.data;
+	let english_footer = (await get_language("footer"))?.data;
+	let arabic = (await get_language("home", "ar-DZ"))?.data;
+	let arabic_navbar = (await get_language("navbar", "ar-DZ"))?.data;
+	let arabic_footer = (await get_language("footer", "ar-DZ"))?.data;
+
+	return {
+		props: {
+			english:english??null,
+      english_navbar:english_navbar??null,
+      english_footer:english_footer??null,
+      arabic:arabic??null,
+      arabic_navbar:arabic_navbar??null,
+      arabic_footer:arabic_footer??null
+		},
+		revalidate: 5
+	}
 }

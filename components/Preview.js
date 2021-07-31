@@ -12,6 +12,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SettingsOverscanIcon from '@material-ui/icons/SettingsOverscan';
 import { API_HOST } from '../utils/constants';
+import draftToHtml from 'draftjs-to-html';
 
 
 
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
       transform: 'rotate(180deg)',
     },
     cardContent: {
-      paddingTop: 0,
+      padding: "0 1.6rem",
     },
     carouselImage: {
       maxHeight: "30rem",
@@ -65,7 +66,7 @@ export const Preview = ({ order, service }) => {
     const router = useRouter()
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    console.log(order);
+    (order);
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -73,7 +74,7 @@ export const Preview = ({ order, service }) => {
     return <Card className={classes.root}>
                     <CardHeader
                         avatar={
-                        <Avatar aria-label="recipe" src={order.user?.avatar&&order.user?.avatar.url?.length>0?order.user?.avatar?.url: `https://avatars.dicebear.com/api/avataaars/${order.user?.id}.svg`}>
+                        <Avatar aria-label="recipe" src={order.user?.avatar&&order.user?.avatar.url?.length>0?API_HOST+order.user?.avatar?.url: `https://avatars.dicebear.com/api/avataaars/${order.user?.id}.svg`}>
                             {order?.user?.username.toUpperCase()}
                         </Avatar>
                         }
@@ -89,10 +90,9 @@ export const Preview = ({ order, service }) => {
                         }}
                     />
                     {/* Carousel */}
-                    <Carousel swiping  swipeable>
+                    <Carousel swiping autoPlay swipeable>
                       {order?.images?.length?
                         order.images.map((v, i) => {
-                          console.log("ooo", v);
                           return (
                             <div className="carousel__img" style={{backgroundImage: `url(${API_HOST + v.url})`, height: 300, backgroundPosition: 'center', backgroundSize: 'cover'}}>
                             </div>
@@ -104,13 +104,13 @@ export const Preview = ({ order, service }) => {
                       }
                     </Carousel>
                     <CardContent className={classes.cardContent} disableSpacing>
-                        <Rating className={classes.rating} name="read-only" value={order?.rating} readOnly precision={0.1} />
+                        <Rating className={classes.rating} name="read-only" value={order?.rating} readOnly disabled={order?.rating?true:false} precision={0.1} />
                         <Typography variant="body2" component="p">
                             {order?.orders} orders
                         </Typography>
                     </CardContent>
                     <CardContent>
-                        <div className="card__desc">
+                        <div className="card__desc--preview">
                           {order?.description}
                         </div>
                     </CardContent>
@@ -135,7 +135,7 @@ export const Preview = ({ order, service }) => {
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent>
                         <Typography className={classes.desc} paragraph>
-                          {order?.detailsDesc}
+                        <div dangerouslySetInnerHTML={{__html: order?.detailsDesc?draftToHtml(JSON.parse(order.detailsDesc)):null}}></div>
                         </Typography>
                         </CardContent>
                     </Collapse>

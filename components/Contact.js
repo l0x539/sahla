@@ -16,6 +16,7 @@ const Editor = dynamic(
 
   import "./contact.module.css"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { GOOGLE_PUBLIC_SECRET } from '../utils/constants';
 
 class Contact extends Component {
     state = {
@@ -84,7 +85,7 @@ class Contact extends Component {
                 />
             <br/>
             <ReCAPTCHA
-                sitekey="6LciR8cbAAAAANtNxMUznKj73KYIstawazdlaLh3"
+                sitekey={GOOGLE_PUBLIC_SECRET}
                 onChange={this.recaptchaChange}
             />
             <button type="submit" className="btn__big btn_content">

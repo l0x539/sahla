@@ -3,7 +3,7 @@
     min-height:20rem;
     max-width:calc(100vw - #{$gutter * 2});
 
-    transition:transform .3s ease, opacity .3s ease;
+    transition:transform .3s ease, opacity .3s ease, width .3;
     transform: rotateX(90deg) translateY(20px);
     opacity:0;
     transform-origin:top center;
@@ -12,9 +12,22 @@
     display:flex;
     flex-direction:column;
     padding:0;
+    overflow: visible;
+
+    &__overlay--scroll {
+        position: fixed;
+        z-index: 1300;
+        inset: 0px;
+        display: flex;
+        overflow-y: scroll;
+    }
 
     &--center {
         text-align:center;
+    }
+
+    & .contact-editor{
+        background-color: vat(--col-container);
     }
 
     cursor:default;
@@ -27,10 +40,11 @@
         width:100vw;
         height:100vh;
         display:flex;
-        align-items:center;
+        align-items: flex-start;
         justify-content:center;
         visibility:hidden;
         opacity:0;
+        padding: 10rem 0;
 
         transform-style: preserve-3d;
         perspective:1300px;

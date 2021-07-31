@@ -19,7 +19,8 @@ export const ImageUploader = (props) => {
         const formData = new FormData();
 
         Array.from(event.target.files).forEach((file) => {
-        formData.append(event.target.name, file);
+            console.log(file);
+            formData.append(event.target.name, file);
         });
 
         formData.append("fileInfo", `{"alternativeText":"","caption":"","name":null}`)
@@ -28,8 +29,6 @@ export const ImageUploader = (props) => {
 
         formRef.current?.reset();
     };
-
-    console.log("umage",user);
 
     return (
         <form ref={formRef} onClick={onClickHandler} className="article__image-container">

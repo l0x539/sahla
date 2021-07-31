@@ -14,13 +14,22 @@ $slider-hov: #72070099;
 
 $col-border-dark: #666666;
 
-$col-container-dark: #24261F;
+$col-container-dark: #242423; //#24261F;
 $dark-color2: #1A1919;
 $col-background-dark: #24261F;
 $text-dark-main: #E1F3F9;
 $text-dark-placeholder: #bdbdbd;
 
 $col-dark: #24261F;
+
+$col-border-smooth-dark: #373737;
+$col-border-smooth-light: lightgray;
+
+$col-shadow-light: #c1c7d1;
+$col-shadow-dark: #00000073;
+
+$col-shadow-light-hover: #7272729e;
+$col-shadow-dark-hover: #0000009e;
 
 $col-paper: #080D11;
 $col-border: #06B2CE;
@@ -44,6 +53,11 @@ $col-carousel: #720700;
 
     --col-alt-bg: #{$alt-light-bg};
     --col-alt-bg2: #{$alt-light-bg2};
+
+    --col-border: #{$col-border-smooth-light};
+
+    --col-shadow: #{$col-shadow-light};
+    --col-shadow-hover: #{$col-shadow-light-hover};
 }
 
 .dark-theme {
@@ -58,6 +72,12 @@ $col-carousel: #720700;
 
     --col-alt-bg: #{$alt-light-bg};
     --col-alt-bg2: #{$alt-light-bg2};
+
+    --col-border: #{$col-border-smooth-dark};
+
+    
+    --col-shadow: #{$col-shadow-dark};
+    --col-shadow-hover: #{$col-shadow-dark-hover};
 }
 
 $font-lato: 'Lato', sans-serif;

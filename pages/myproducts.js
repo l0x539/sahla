@@ -1,15 +1,16 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { useRouter, withRouter } from 'next/router'
 import Layout from '../components/Layout'
 import Message from '../components/Message'
-import { getUser, getUserProduct } from '../utils/queries'
+import { getUserProduct, searchQuery } from '../utils/queries'
 import Loader from 'react-loader-spinner';
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Backdrop, Modal, Fade } from "@material-ui/core";
 import ProductsList from '../components/ProductsList'
 import { Preview } from '../components/Preview'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { get_language } from '../utils/requests'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +24,34 @@ const useStyles = makeStyles((theme) => ({
 })
 );
 
-export default function MyProducts() {
+function MyProducts({
+    english,
+    english_navbar,
+    english_footer,
+    arabic,
+    arabic_navbar,
+    arabic_footer
+  }) {
+
+  const [search, setSearch] = useState('')
+
+  let language = english;
+  let navbarLang = english_navbar;
+  let footerLang = english_footer;
+  let isArabic = false
+  if (typeof window !== 'undefined') {
+    localStorage.getItem("lang")
+    isArabic = true
+    switch (localStorage.getItem("lang")) {
+      case "ar-DZ":
+        language = arabic;
+        navbarLang = arabic_navbar;
+        footerLang = arabic_footer;
+        break;
+      default:
+        break;
+    }
+  }
   const classes = useStyles();
   const [preview, setPreview] = useState({})
   const [modalOpen, setModalOpen] = useState(false)
@@ -40,33 +68,41 @@ export default function MyProducts() {
 
   if (typeof window !== 'undefined') {
     const token = localStorage.getItem("jwt");
-    console.log(token);
     if (!token) {
       router.push(`/`)
       return ""
     }
 
-    console.log("hi");
-    const queryProducts = getUserProduct(false, token)
-    console.log("ho");
-    if (queryProducts.isLoading) {
-      return <Message desc={<Loader type="TailSpin" />} />
+    let queryProducts;
+
+    if (search.length) {
+      queryProducts = searchQuery("products", search, true, token)
+    } else {
+      queryProducts = getUserProduct(false, token)
     }
-    if (!queryProducts.data?.data) {
-      router.push(`/`)
-      return <Message desc={<Loader type="TailSpin" />} />
+  
+    
+  
+    if (!queryProducts) {
+      return (<Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
+                <Head>
+                  <title>My Products | Sahla Business</title>
+                  <meta name="description" content="Sahla business description" />
+                  <link rel="icon" href="/favicon.ico" />
+                </Head><Message title={<span style={{color: "red"}}>Something went wrong!</span>} desc={<Loader type="TailSpin" />} />
+              </Layout>
+              )
     }
-    else {
       
       const products = queryProducts.data?.data
       return (
-        <Layout>
+        <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
           <Head>
             <title>My Products | Sahla Business</title>
             <meta name="description" content="Sahla business description" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <ProductsList products={products} preview={openModal} />
+          <ProductsList isLoading={queryProducts.isLoading} setSearch={setSearch} isLoggedIn products={products} preview={openModal} />
           <Modal
               className={classes.modal}
               aria-labelledby="transition-modal-title"
@@ -88,24 +124,41 @@ export default function MyProducts() {
           </Modal>
         </Layout>
       )
-    }
 
 
   } else {
-    return <Message desc={<Loader type="TailSpin" />} />
-  }
-
-  console.log("queryProducts", products);
-  
-  return (
-    <Layout>
+    return (<Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
       <Head>
         <title>My Products | Sahla Business</title>
         <meta name="description" content="Sahla business description" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Message title={'Sahla Business'} desc={'Comming Soon!'} />
-      
+      </Head><Message desc={<Loader type="TailSpin" />} />
     </Layout>
-  )
+    )
+  }
+}
+
+export default withRouter(MyProducts);
+
+
+export async function getStaticProps(context) {
+
+	let english = (await get_language("home"))?.data;
+	let english_navbar = (await get_language("navbar"))?.data;
+	let english_footer = (await get_language("footer"))?.data;
+	let arabic = (await get_language("home", "ar-DZ"))?.data;
+	let arabic_navbar = (await get_language("navbar", "ar-DZ"))?.data;
+	let arabic_footer = (await get_language("footer", "ar-DZ"))?.data;
+
+	return {
+		props: {
+			english:english??null,
+      english_navbar:english_navbar??null,
+      english_footer:english_footer??null,
+      arabic:arabic??null,
+      arabic_navbar:arabic_navbar??null,
+      arabic_footer:arabic_footer??null
+		},
+		revalidate: 5
+	}
 }

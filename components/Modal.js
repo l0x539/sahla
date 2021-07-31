@@ -15,7 +15,7 @@ class Modal extends Component {
 
     render() { 
         return (
-            <div onClick={this.handleBackgroundClick} className={`modal__background ${this.props.active ? 'modal__background--active' : ''}`}>
+            <div onClick={this.handleBackgroundClick} className={`modal__background modal__overlay--scroll ${this.props.active ? 'modal__background--active' : ''}`}>
                 <div className={`modal ${this.props.centerContent ? 'modal--center' : ''}`} style={{minWidth: this.props.size.width, minHeight: this.props.size.height}}>
                     <div className="modal__header">
                         <div className="modal__title">{this.props.title}</div>

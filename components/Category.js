@@ -11,7 +11,7 @@ class Category extends Component {
 
     render () {
         return (
-            <div className="category arabic">
+            <div className={`category ${this.props.isArabic?"arabic":""}`}>
                 <div className="category__svg">
                     {this.props.svg}
                 </div>

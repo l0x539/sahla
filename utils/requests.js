@@ -1,10 +1,105 @@
 import axios from "axios";
-import { API_HOST } from "./constants";
+import { API_HOST, LOCAL_API_HOST } from "./constants";
 
 // const API_HOST = "https://api.sahlabusiness.com";
 
-export const get_products_user = async (user_id, start=0, limit=32) => {
-    let response = await axios.get(API_HOST+`/products?user_id=${user_id}&_start=${start}&_limit=${limit}`)
+
+export const get_products = async (start=0, limit=32, sort="_sort=orders:desc,rating:desc") => {
+    let response = await axios.get(API_HOST+`/products?_start=${start}&_limit=${limit}&${sort}`)
+                    .then(res => {
+                        let obj = {};
+                        switch (res.status) {
+                            case 200:
+                                obj.error = false;
+                                obj.data = res.data
+                                break
+                            case 501:
+                                obj.error = true;
+                                obj.message = res.error
+                                break
+                            default:
+                                obj.error = true;
+                                obj.message = "Somehing went wrong!"
+                                break;
+                            }
+            
+                            return obj;
+                        }
+                    ).catch(err => {
+
+                        return {
+                            error: true,
+                            message: err.response.data.message
+                        }
+                    })
+    return response;
+}
+
+export const get_services = async (start=0, limit=32, sort="_sort=orders:desc,rating:desc") => {
+    let response = await axios.get(API_HOST+`/services?_start=${start}&_limit=${limit}&${sort}`)
+                    .then(res => {
+                        let obj = {};
+                        switch (res.status) {
+                            case 200:
+                                obj.error = false;
+                                obj.data = res.data
+                                break
+                            case 501:
+                                obj.error = true;
+                                obj.message = res.error
+                                break
+                            default:
+                                obj.error = true;
+                                obj.message = "Somehing went wrong!"
+                                break;
+                            }
+            
+                            return obj;
+                        }
+                    ).catch(err => {
+
+                        return {
+                            error: true,
+                            message: err.response.data.message
+                        }
+                    })
+    return response;
+}
+
+
+export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=orders:desc,rating:desc") => {
+    let response = await axios.get(API_HOST+`/products?user_id=${user_id}&_start=${start}&${sort}`)
+                    .then(res => {
+                        let obj = {};
+                        switch (res.status) {
+                            case 200:
+                                obj.error = false;
+                                obj.data = res.data
+                                break
+                            case 501:
+                                obj.error = true;
+                                obj.message = res.error
+                                break
+                            default:
+                                obj.error = true;
+                                obj.message = "Somehing went wrong!"
+                                break;
+                            }
+            
+                            return obj;
+                        }
+                    ).catch(err => {
+
+                        return {
+                            error: true,
+                            message: err.response.data.message
+                        }
+                    })
+    return response;
+}
+
+export const get_services_user = async (user_id, start=0, limit=32, sort="_sort=orders:desc,rating:desc") => {
+    let response = await axios.get(API_HOST+`/services?user_id=${user_id}&_start=${start}&${sort}`)
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -36,6 +131,37 @@ export const get_products_user = async (user_id, start=0, limit=32) => {
 
 export const get_product = async (id) => {
     let response = await axios.get(API_HOST+`/products/${id}`)
+                    .then(res => {
+                        let obj = {};
+                        switch (res.status) {
+                            case 200:
+                                obj.error = false;
+                                obj.data = res.data
+                                break
+                            case 501:
+                                obj.error = true;
+                                obj.message = res.error
+                                break
+                            default:
+                                obj.error = true;
+                                obj.message = "Somehing went wrong!"
+                                break;
+                            }
+            
+                            return obj;
+                        }
+                    ).catch(err => {
+
+                        return {
+                            error: true,
+                            message: err.response.data.message
+                        }
+                    })
+    return response;
+}
+
+export const get_service = async (id) => {
+    let response = await axios.get(API_HOST+`/services/${id}`)
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -165,7 +291,6 @@ export const login = async (email, password) => {
     }).then(
         res => {
             let obj = {};
-            console.log("res", res);
             switch (res.status) {
                 case 200:
                     obj.error = false;
@@ -367,4 +492,173 @@ export const update_profile = async (data, token, id) => {
     })
     
     return response;
+}
+
+
+export const add_product = async(data, config) => {
+    const response = await axios.post(API_HOST + "/products", data, config).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+    
+    return response;;
+}
+
+export const add_service = async(data, config) => {
+    const response = await axios.post(API_HOST + "/services", data, config).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+    
+    return response;;
+}
+
+export const delete_product = async (token, id) => {
+    let response = axios.delete(API_HOST + "/products/"+id,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    ).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+
+    return response
+}
+
+export const delete_service = async (token, id) => {
+    let response = axios.delete(API_HOST + "/services/"+id,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    ).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+
+    return response
+}
+
+export const get_language = async (page, lang=false) => {
+    let response = axios.get(LOCAL_API_HOST + `/${page}${lang?`?_locale=${lang}`:""}`)
+        .then(
+            res => {
+                let obj = {};
+                switch (res.status) {
+                    case 200:
+                        obj.error = false;
+                        obj.data = res.data
+                        break
+                    case 501:
+                        obj.error = true;
+                        obj.message = res.error
+                        break
+                    default:
+                        obj.error = true;
+                        obj.message = "Somehing went wrong!"
+                        break;
+                }
+
+                return obj;
+            }
+        ).catch(err => {
+            return {
+                error: true,
+                message: err.response.data.message
+            }
+    })
+
+    return response
 }

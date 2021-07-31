@@ -1,0 +1,132 @@
+.control {
+    &-head {
+        z-index: 0;
+        width: 50%;
+        margin: 0 auto;
+        height: 4rem;
+        padding: 0 3rem;
+        background-color: var(--col-container);
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        white-space: nowrap;
+    
+        & svg {
+            width: 2.3rem;
+            height: 2.3rem;
+        }
+        &__button {
+            margin: auto 0;
+            margin-right: 3rem;
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: fit-content;
+            padding: 0 2px;
+        }
+    
+        &--add {
+            color: #00b45a;
+    
+        }
+        &--edit {
+            color: rgb(6, 39, 187);
+            
+        }
+        &--remove {
+            color: rgb(202, 7, 7);
+            
+        }
+    }
+
+    &-item__btn--images {
+        border: solid 1px var(--col-border);
+        border-radius: 6px;
+        margin: 1rem 0;
+        & svg {
+            height: 2.5rem;
+            width: 2.5rem
+        }
+    }
+    &-item__desc {
+        margin-bottom: 3px;
+    }
+
+    &-item--row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin: 1rem 0;
+    }
+
+    &-item--price {
+        max-width: 9rem;
+        margin-right: 5rem;
+        margin-bottom: 0;
+    }
+
+    &-item--currency {
+        width: 11.5rem;
+        margin-bottom: 0;
+
+    }
+    &-item--currency div {
+        background-color: var(--col-container);
+        color: var(--col-text-1);
+
+    }
+
+    &-item__button--image-open {
+        min-width: 46rem;
+        height: 17rem;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    &-item__images--preview {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        max-width: 46rem;
+    }
+    
+    &-item__image--preview {
+        margin-right: 1rem;
+
+        &:hover .control-item__image--remove {
+            display: block;
+            visibility: visible;
+        }
+    }
+
+    &-item__image--remove {
+        position: absolute;
+        display: none;
+        visibility: hidden;
+        & svg {
+            background-color: #00000059;
+            color: white;
+            border-radius: 6px;
+        }
+    }
+
+    
+
+}
+
+// .card__logged .card {
+//     justify-content: flex-end;
+//     align-items: flex-start;
+// }
+
+// .card__logged .card__content {
+//     margin: 0 auto;
+// }
+
+div .scrollbar-container {
+    height: unset;
+}

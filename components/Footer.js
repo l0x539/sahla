@@ -4,59 +4,60 @@ import Link from 'next/link';
 import Facebook from "../assets/facebook.svg";
 import Twitter from "../assets/twitter.svg";
 import Instagram from "../assets/instagram.svg";
+import { API_HOST } from '../utils/constants';
 
-const Footer = () => {
+const Footer = ({language, isArabic}) => {
     return (
-        <div className="footer">
-            <div className="footer__list left">
+        <div className={`footer ${isArabic?"arabic":""}`}>
+            <div className="footer__list left"  dir={isArabic?"rtl":"ltr"}>
                 <h2 className="footer__title">
-                    Sahla Buseniss
+                    {language?language.left_title:'Sahla Buseniss'}
                 </h2>
                 <div className="footer__text--content">
-                Sahla is an online based business company and commercial trade center that provides services for its customers  and help advertise, spread and attract  customers to businesses.	
+                {language?language.description:'Sahla is an online based business company and commercial trade center that provides services for its customers  and help advertise, spread and attract  customers to businesses.'}	
                 </div>
             </div>
-            <div className="footer__list mid">
+            <div className="footer__list mid" dir={isArabic?"rtl":"ltr"}>
                 <h2 className="footer__title">
-                    Useful Links
+                    {language?language.mid_title:'Useful Links'}
                 </h2>
                 <div className="footer__list--container">
                     <div className="footer__list--links">
                         <div className="footer__link">
                             <Link href="/">
-                                Home
+                                {language?language.home:'Home'}
                             </Link>
                         </div>
                         <div className="footer__link">
                             <Link href="/">
-                                Services
+                                {language?language.services:'Services'}
                             </Link>
                         </div>
                         <div className="footer__link">
                             <Link href="/">
-                                Products
+                                {language?language.products:'Products'}
                             </Link>
                         </div>
                         <div className="footer__link">
                             <Link href="/">
-                                About US
+                                {language?language.aboutus:'About US'}
                             </Link>
                         </div>
                         <div className="footer__link">
                             <Link href="/">
-                                Support
+                                {language?language.support:'Support'}
                             </Link>
                         </div>
                     </div>
                     <div className="">
                         <div className="footer__link">
                             <Link href="/">
-                                Privacy Policy
+                                {language?language.privacy_policy:'Privacy Policy'}
                             </Link>
                         </div>
                         <div className="footer__link">
                             <Link href="/">
-                                {'Terms & Services'}
+                                {language?language.terms_and_services:'Terms & Services'}
                             </Link>
                         </div>
                     </div>
@@ -64,17 +65,17 @@ const Footer = () => {
             </div>
             <div className="footer__right">
                 <div className="footer__logo">
-                    <img src="/assets/logoFooter.png"  />
+                    <img src={language?(API_HOST + language.logo_footer.url):"/assets/logoFooter.png"}  />
                 </div>
                 <h3 className="footer__title2" >Connect with us</h3>
                 <div className="footer__socials">
-                    <a target="_blank" href="https://fb.me/Sahlabusiness">
+                    <a target="_blank" href={language.facebook}>
                         <Facebook />
                     </a>
-                    <a target="_blank" href="https://twitter.com/Sahlabusiness">
+                    <a target="_blank" href={language.twitter}>
                         <Twitter />
                     </a>
-                    <a target="_blank" href="https://instagram.com/Sahlabusiness">
+                    <a target="_blank" href={language.instagram}>
                         <Instagram />
                     </a>
                 </div>

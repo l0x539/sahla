@@ -39,5 +39,8 @@ yarn-error.log*
 /public/assets
 /public/fonts
 
+# secrets
+/utils/constant.js
+
 # yarn
 yarn.lock

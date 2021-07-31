@@ -34,6 +34,20 @@ class LanguageSelect extends Component {
         }
     }
 
+    setArabic = async () => {
+        if (localStorage.getItem("lang") !== "ar-DZ") {
+            await localStorage.setItem("lang", "ar-DZ")
+            window.location.reload();
+        }
+    }
+
+    setEnglish = async () => {
+        if (localStorage.getItem("lang")) {
+            await localStorage.removeItem("lang")
+            window.location.reload();
+        }
+    }
+
     render () {
 
         return (
@@ -48,15 +62,15 @@ class LanguageSelect extends Component {
                 <div className={`ln-dropdown__list ${this.state.showMenu?"ln-dropdown__visible":""}`} ref={(element) => {
                   this.dropdownMenu = element;
                 }}>
-                    <div className="ln-dropdown__item">
-                        <img className="ln-dropdown__language--flag" src={`/assets/${this.props.flag}.svg`} />
-                        <div className="ln-dropdown__language--text">{this.props.text}</div>
+                    <div className="ln-dropdown__item" onClick={this.setArabic}>
+                        <img className="ln-dropdown__language--flag" src={`/assets/algeria.svg`} />
+                        <div className="ln-dropdown__language--text">{'عربي'}</div>
                     
                     </div>
 
                     <div className="divider" />
 
-                    <div className="ln-dropdown__item">
+                    <div className="ln-dropdown__item" onClick={this.setEnglish}>
                         <img className="ln-dropdown__language--flag" src={`/assets/united-states.svg`} />
                         <div className="ln-dropdown__language--text">English</div>
                     
@@ -64,7 +78,7 @@ class LanguageSelect extends Component {
 
 
                     {this.props.items?.map((v, i)=>(
-                        <div className="ln-dropdown__item">
+                        <div className="ln-dropdown__item" onClick={this.setLang}>
                         <img className="ln-dropdown__language--flag" src={`/assets/${v}.svg`} />
                         <div className="ln-dropdown__language--text">{v}</div>
                     

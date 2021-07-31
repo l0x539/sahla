@@ -3,30 +3,50 @@
     max-width: 70rem;
     padding: 4rem 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     
     &__input {
-        transition: transform 200ms;
+        transition: transform 200ms, box-shadow 500ms;
         font-size: 2.3rem;
         font-family: $font-somar;
         width: 100%;
         padding: 1rem 6rem;
-        box-shadow: 0px 0px 18px 2px #0000009e;
+        // box-shadow: 0px 0px 18px 2px #0000009e;
+        box-shadow: 0px 2px 11px 0px #565656;
         border-radius: 6px;
+        margin-left: -4.4rem;
     }
 
     &__input:focus {
+        transform: scale(1.02) translateX(6px);
+        box-shadow: 0px 3px 15px 2px #565656;
+        // box-shadow: 0px 0px 18px 2px #0000009e;
+
+    }
+
+    &__input.arabic:focus {
         transform: scale(1.02) translateX(-6px);
+        box-shadow: 0px 3px 15px 2px #565656;
+        // box-shadow: 0px 0px 18px 2px #0000009e;
+
     }
 
     & svg {
         width: 2.5rem;
         height: auto;
+    }
+    
+    &.arabic svg {
         margin-left: -4.4rem;
     }
 
 
     &__input.arabic {
         text-align: right;
+        margin-left: 0;
+    }
+
+    &.arabic {
+        flex-direction: row;
     }
 }

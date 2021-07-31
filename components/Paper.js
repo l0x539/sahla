@@ -15,7 +15,7 @@ class Paper extends Component {
                 <div className="paper__side paper ">
                     {this.props.children}
                 </div>
-                <div className="paper__side paper__other-side arabic">
+                <div className={`paper__side paper__other-side ${this.props.isArabic?"arabic":""}`}>
                     <div className="paper__other-side-part ">
                         {this.props.otherSide}
                     </div>

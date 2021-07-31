@@ -1,8 +1,8 @@
 
-const SignUpButton = ({openModalEvent}) => {
+const SignUpButton = ({openModalEvent, placeholder}) => {
     return <button onClick={openModalEvent} className="btn__big">
         <span className="btn__big--front">
-            Sign Up
+            {placeholder}
         </span>
     </button>
 }

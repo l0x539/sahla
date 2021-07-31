@@ -8170,6 +8170,10 @@
   color: var(--col-text-2);
  }
 
+ .arabic .ui.dropdown .menu > .item {
+   font-size: 2rem;
+ }
+
  .ui.dropdown .menu > .item:hover {
   color: var(--col-text-1);
  }
