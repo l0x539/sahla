@@ -66,8 +66,39 @@ export const get_services = async (start=0, limit=32, sort="_sort=orders:desc,ra
     return response;
 }
 
+export const get_categories = async (type, locale=false) => {
+    let response = await axios.get(API_HOST+`/categories?_where[_or][0][type]=both&_where[_or][1][type]=${type}${locale?`&_locale=${locale}`:""}`)
+                    .then(res => {
+                        let obj = {};
+                        switch (res.status) {
+                            case 200:
+                                obj.error = false;
+                                obj.data = res.data
+                                break
+                            case 501:
+                                obj.error = true;
+                                obj.message = res.error
+                                break
+                            default:
+                                obj.error = true;
+                                obj.message = "Somehing went wrong!"
+                                break;
+                            }
+            
+                            return obj;
+                        }
+                    ).catch(err => {
 
-export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=orders:desc,rating:desc") => {
+                        return {
+                            error: true,
+                            message: err.response.data.message
+                        }
+                    })
+    return response;
+}
+
+
+export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=created_at:desc,orders:desc,rating:desc") => {
     let response = await axios.get(API_HOST+`/products?user_id=${user_id}&_start=${start}&${sort}`)
                     .then(res => {
                         let obj = {};
@@ -98,7 +129,7 @@ export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=
     return response;
 }
 
-export const get_services_user = async (user_id, start=0, limit=32, sort="_sort=orders:desc,rating:desc") => {
+export const get_services_user = async (user_id, start=0, limit=32, sort="_sort=created_at:desc,orders:desc,rating:desc") => {
     let response = await axios.get(API_HOST+`/services?user_id=${user_id}&_start=${start}&${sort}`)
                     .then(res => {
                         let obj = {};
@@ -528,6 +559,37 @@ export const add_product = async(data, config) => {
 
 export const add_service = async(data, config) => {
     const response = await axios.post(API_HOST + "/services", data, config).then(
+        res => {
+            let obj = {};
+            switch (res.status) {
+                case 200:
+                    obj.error = false;
+                    obj.data = res.data
+                    break
+                case 501:
+                    obj.error = true;
+                    obj.message = res.error
+                    break
+                default:
+                    obj.error = true;
+                    obj.message = "Somehing went wrong!"
+                    break;
+            }
+
+            return obj;
+        }
+    ).catch(err => {
+        return {
+            error: true,
+            message: err.response.data.message
+        }
+    })
+    
+    return response;;
+}
+
+export const place_order = async(data, config) => {
+    const response = await axios.post(API_HOST + "/orders", data, config).then(
         res => {
             let obj = {};
             switch (res.status) {

@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import { withRouter } from 'next/router';
-import Layout from '../../components/Layout'
-import Message from '../../components/Message'
-import { get_language } from '../../utils/requests'
+import { useRouter, withRouter } from 'next/router';
+import Layout from '../components/Layout'
+import Message from '../components/Message'
+import { MyOrders } from '../components/MyOrders';
+import { get_language } from '../utils/requests'
 
 function MyOrder({
     english,
@@ -38,8 +39,7 @@ function MyOrder({
         <meta name="description" content="Sahla business description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Message title={'Sahla Business'} desc={'Comming Soon!'} />
-      
+      <MyOrders />      
     </Layout>
   )
 }

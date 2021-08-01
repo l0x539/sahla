@@ -1,4 +1,4 @@
-import { Add, Edit, RestoreFromTrashSharp } from "@material-ui/icons";
+import { Add, RestoreFromTrashSharp } from "@material-ui/icons";
 import { Component } from "react";
 import AddItem from "./AddItem";
 import CardCarousel from "./CardCarousel";
@@ -6,7 +6,8 @@ import Modal from "./Modal";
 import Question from "./Question";
 import SearchBar from "./SearchBar";
 import { NotificationManager} from 'react-notifications';
-import { delete_product, add_product } from "../utils/requests";
+import { delete_product, add_product, get_categories } from "../utils/requests";
+import { Categories } from "./Categories";
  
 
 class ProductsList extends Component {
@@ -14,10 +15,16 @@ class ProductsList extends Component {
         super(props)
         this.state = {
             selected: [],
+            categories: []
         }
     }
 
-    componentDidMount () {
+    async componentDidMount () {
+        const categories = await get_categories("products", this.props.isArabic?"ar-DZ":false)
+        if (!categories.error) {
+
+            this.setState({categories: categories.data})
+        }
     }
 
     previewProduct = (id) => {
@@ -85,6 +92,9 @@ class ProductsList extends Component {
         this.setState({products })
     }
 
+    selecCategory = (category) => {
+        this.props.setCategories(category)
+    }
 
     render () {
         return (
@@ -110,41 +120,7 @@ class ProductsList extends Component {
                 :null
                 }
                 <div className="list">
-                    <div className="list__left">
-                        <div className="list__title">
-                            {'Categories'}
-                        </div>
-                        <div className="list__container">
-                            <div className="list__categories">
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                            </div>
-                            <div className="list__categories">
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Categories setCategories={this.selecCategory} categories={this.state.categories} />
                     <div className={"list__right " + (this.props.isLoggedIn?"card__logged":"")}>
                         <CardCarousel isLoading={this.props.isLoading} isLoggedIn={this.props.isLoggedIn} preview={this.previewProduct} items={this.props.products} selectCard={this.selectCard} />
                     </div>

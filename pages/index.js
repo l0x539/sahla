@@ -88,7 +88,7 @@ function Home({
         <meta name="description" content={language?language.description:"Sahla is an online based business company and commercial trade center that provides services for its customers and help advertise, spread and attract customers to businesses."} />
         <link rel="icon" href={language?(API_HOST + language.favicon.url):"/favicon.ico"} />
       </Head>
-      <Carousel swiping autoPlay swipeable showThumbs={false}>
+      <Carousel swiping showStatus={false} autoPlay swipeable showThumbs={false}>
         {
           language?
           language.carousel_images.map((v, i) => {

@@ -55,4 +55,9 @@
         border-radius: 6px;
         background-color: var(--col-background);
     }
+
+    &__category.active {
+        border-color: $color-2;
+        color: $color-2;
+    }
 }

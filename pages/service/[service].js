@@ -83,7 +83,7 @@ const Service = ({
         }
     }
     var isArabicContent = /[\u0600-\u06FF]/.test(prod.title);
-    console.log( (prod.user.avatar&&prod.user.avatar?.url)?API_HOST + prod.user.avatar.url: `https://avatars.dicebear.com/api/avataaars/${prod.user.id}.svg`);
+    console.log( (prod.user?.avatar&&prod.user?.avatar?.url)?API_HOST + prod.user.avatar.url: `https://avatars.dicebear.com/api/avataaars/${prod.user.id}.svg`);
     return (
         <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
         <Head>
@@ -96,7 +96,7 @@ const Service = ({
                 <h1 className={"show-title " + (isArabicContent?"arabic":"")}>{prod.title}</h1>
                 <div className="show-header--right">
                     <span className="show-user">{prod.user.username}</span>
-                    <Avatar name={prod.user.username} round={true} size="50" src={ (prod.user.avatar&&prod.user.avatar?.url)?API_HOST + prod.user.avatar.url: `https://avatars.dicebear.com/api/avataaars/${prod.user.id}.svg`} />
+                    <Avatar name={prod.user.username} round={true} size="50" src={ (prod.user?.avatar&&prod.user?.avatar?.url)?API_HOST + prod.user?.avatar.url: `https://avatars.dicebear.com/api/avataaars/${prod.user.id}.svg`} />
 
                 </div>
             </div>

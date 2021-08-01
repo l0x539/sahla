@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter, withRouter } from 'next/router'
 import Layout from '../components/Layout'
 import Message from '../components/Message'
-import { getUserService } from '../utils/queries'
+import { getUserService, searchQuery } from '../utils/queries'
 import Loader from 'react-loader-spinner';
 import { useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,7 +34,6 @@ function MyServices({
   }) {
 
   const [search, setSearch] = useState('')
-
 
   let language = english;
   let navbarLang = english_navbar;
@@ -74,29 +73,26 @@ function MyServices({
       return ""
     }
 
-    const queryServices = getUserService(false, token)
-    if (queryServices.isLoading) {
-      return (<Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
-          <Head>
-            <title>My Services | Sahla Business</title>
-            <meta name="description" content="Sahla business description" />
-            <link rel="icon" href="/favicon.ico" />
-          </Head><Message desc={<Loader type="TailSpin" />} />
-        </Layout>
-        )
+    let queryServices;
+
+    if (search.length) {
+      queryServices = searchQuery("services", search, true, token)
+    } else {
+      queryServices = getUserService(false, token)
     }
-    if (!queryServices.data?.data) {
-      router.push(`/`)
+  
+    
+  
+    if (!queryServices) {
       return (<Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
-        <Head>
-          <title>My Services | Sahla Business</title>
-          <meta name="description" content="Sahla business description" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head><Message desc={<Loader type="TailSpin" />} />
-      </Layout>
-      )
+                <Head>
+                  <title>My Services | Sahla Business</title>
+                  <meta name="description" content="Sahla business description" />
+                  <link rel="icon" href="/favicon.ico" />
+                </Head><Message title={<span style={{color: "red"}}>Something went wrong!</span>} desc={<Loader type="TailSpin" />} />
+              </Layout>
+              )
     }
-    else {
       
       const services = queryServices.data?.data
       return (
@@ -106,7 +102,7 @@ function MyServices({
             <meta name="description" content="Sahla business description" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <ServicesList setSearch={setSearch} isLoggedIn services={services} preview={openModal} />
+          <ServicesList isLoading={queryServices.isLoading} setSearch={setSearch} isLoggedIn services={services} preview={openModal} />
           <Modal
               className={classes.modal}
               aria-labelledby="transition-modal-title"
@@ -128,7 +124,6 @@ function MyServices({
           </Modal>
         </Layout>
       )
-    }
 
 
   } else {
@@ -141,19 +136,6 @@ function MyServices({
     </Layout>
     )
   }
-
-  
-  return (
-    <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
-      <Head>
-        <title>My Services | Sahla Business</title>
-        <meta name="description" content="Sahla business description" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Message title={'Sahla Business'} desc={'Comming Soon!'} />
-      
-    </Layout>
-  )
 }
 
 export default withRouter(MyServices);

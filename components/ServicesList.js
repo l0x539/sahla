@@ -6,7 +6,8 @@ import Modal from "./Modal";
 import Question from "./Question";
 import SearchBar from "./SearchBar";
 import { NotificationManager} from 'react-notifications';
-import { delete_service, add_service } from "../utils/requests";
+import { delete_service, add_service, get_categories } from "../utils/requests";
+import { Categories } from "./Categories";
  
 
 class ServicesList extends Component {
@@ -14,10 +15,16 @@ class ServicesList extends Component {
         super(props)
         this.state = {
             selected: [],
+            categories: []
         }
     }
 
-    componentDidMount () {
+    async componentDidMount () {
+        const categories = await get_categories("services", this.props.isArabic?"ar-DZ":false)
+        if (!categories.error) {
+
+            this.setState({categories: categories.data})
+        }
     }
 
     previewService = (id) => {
@@ -110,41 +117,7 @@ class ServicesList extends Component {
                 :null
                 }
                 <div className="list">
-                    <div className="list__left">
-                        <div className="list__title">
-                            {'Categories'}
-                        </div>
-                        <div className="list__container">
-                            <div className="list__categories">
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                            </div>
-                            <div className="list__categories">
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                                <div className="list__category">
-                                    {'Category'}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Categories categories={this.state.categories} />
                     <div className={"list__right " + (this.props.isLoggedIn?"card__logged":"")}>
                         <CardCarousel isLoading={this.props.isLoading} isLoggedIn={this.props.isLoggedIn} preview={this.previewService} items={this.props.services} selectCard={this.selectCard} />
                     </div>

@@ -1,0 +1,51 @@
+.order {
+    &__header {
+        display: flex;
+        box-shadow: rgb(40 42 49 / 16%) 0px 1px 2px 0px;
+    }
+    &__return {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top: 1px solid rgb(243, 244, 244);
+        border-right: 1px solid rgb(243, 244, 244);
+        border-left: 1px solid rgb(243, 244, 244);
+        cursor: pointer;
+        height: 6rem;
+        width: 6.5rem;
+        background-color: var(--col-container);
+    }
+
+    &__return:hover svg {
+        color: rgb(129, 132, 138);
+    }
+
+    &__return svg {
+        width: 5rem;
+        height: 5rem;
+        color: #c0c2c5;
+    }
+    &__content {
+        margin: 3rem
+    }
+
+    form &__link {
+        font-size: 1.4rem;
+    }
+    &__button {
+        margin-top: 1rem;
+    }
+    div &__quantity {
+        width: 12rem;
+    }
+
+    &__preview {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__preview--after {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

@@ -59,25 +59,24 @@ export const getUserService = (user_id=false, token=false, start=0, limit=32) =>
     })
 }
 
-export const getProducts = (start=0, limit=32) => {
-    return useQuery(["products", start], async () => {
-
-        return get_products(start, limit)
+export const getProducts = (categories=false, start=0, limit=32) => {
+    return useQuery(["products", categories, start], async () => {
+        return get_products(start, limit, `_sort=${categories?.length?`${categories.map((v, i) => `${v}`)}`:"orders:desc,rating:desc"}`)
     }, {
         staleTime: 1000
     })
 }
 
-export const getServices = (start=0, limit=32) => {
-    return useQuery(["services", start], async () => {
+export const getServices = (categories=false, start=0, limit=32) => {
+    return useQuery(["services", categories, start], async () => {
 
-        return get_services(start, limit)
+        return get_services(start, limit, `_sort=${categories?.length?`${categories.map((v, i) => `${v}${i===(categories.length-1)?"":","}`)}`:"orders:desc,rating:desc"}`)
     }, {
         staleTime: 1000
     })
 }
 
-export const searchQuery =  (searchfor, query, user_id=false, token=false, start=0, limit=32) => {
+export const searchQuery =  (searchfor, query, user_id=false, token=false, categories=false, start=0, limit=32) => {
     return useQuery([searchfor, query], async () => {
         if (user_id===true) {
     
@@ -87,7 +86,7 @@ export const searchQuery =  (searchfor, query, user_id=false, token=false, start
         const source = CancelToken.source()
         const promise = new Promise(resolve => setTimeout(resolve, 1000))
             .then(() => {
-                return axios.get(API_HOST+`/${searchfor}?_where[_or][0][title_contains]=${query}&_where[_or][1][description_contains]=${query}${user_id?`&_user_id=${user_id}`:""}`,
+                return axios.get(API_HOST+`/${searchfor}?_where[_or][0][title_contains]=${query}&_where[_or][1][description_contains]=${query}${user_id?`&_user_id=${user_id}`:""}${categories?`&_sort=${categories.map((v, i) => `${v}${i===(categories.length-1)?"":","}`)}`:""}`,
                     {
                         cancelToken: source.token
                     }

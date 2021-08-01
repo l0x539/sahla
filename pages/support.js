@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Message from '../components/Message'
 import { get_language } from '../utils/requests'
 
-export default function AboutUS({
+function AboutUS({
     english,
     english_navbar,
     english_footer,

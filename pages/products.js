@@ -37,6 +37,19 @@ function Products({
   const [preview, setPreview] = useState({})
   const [modalOpen, setModalOpen] = useState(false)
   const [search, setSearch] = useState('')
+  const [categories, setCategoriesItems] = useState([])
+
+  const setCategories = async (category ) => {
+
+    if (categories.indexOf(category.sort)!==-1) {
+      const new_categories = await categories.filter((v, i) => v!==category.sort)
+
+      setCategoriesItems(new_categories)
+      
+    } else {
+      setCategoriesItems([...categories, category.sort])
+    }
+  }
 
   let language = english;
   let navbarLang = english_navbar;
@@ -59,11 +72,10 @@ function Products({
   let queryProducts;
 
   if (search.length) {
-    queryProducts = searchQuery("products", search)
+    queryProducts = searchQuery("products", search, user_id=false, token=false, categories)
   } else {
-    queryProducts = getProducts()
+    queryProducts = getProducts(categories)
   }
-
   if (!queryProducts) {
     return (<Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
               <Head>
@@ -94,7 +106,7 @@ function Products({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <ProductsList isLoading={queryProducts.isLoading} setSearch={setSearch} products={products} preview={openModal} />
+      <ProductsList isLoading={queryProducts.isLoading} setCategories={setCategories} categories={categories} setSearch={setSearch} products={products} preview={openModal} />
     
       <Modal
           className={classes.modal}
