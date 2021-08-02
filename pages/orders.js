@@ -7,6 +7,7 @@ import Message from '../components/Message'
 import { MyOrders } from '../components/MyOrders';
 import { getOrders } from '../utils/queries';
 import { get_language } from '../utils/requests'
+import { API_HOST } from '../utils/constants';
 
 function Orders({
     english,
@@ -52,6 +53,7 @@ function Orders({
             <Head>
                 <title>My Orders | Sahla Business</title>
                 <meta name="description" content="Sahla business description" />
+                <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
                 
             </Head>
             <div className="orders">

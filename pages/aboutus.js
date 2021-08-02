@@ -6,6 +6,8 @@ import { get_language } from '../utils/requests'
 import ReactMarkdown from 'react-markdown'
 import Loader from 'react-loader-spinner'
 import AboutUs from '../components/AboutUs';
+import { API_HOST } from '../utils/constants';
+
 
 function AboutUS({
     english,
@@ -40,6 +42,7 @@ function AboutUS({
       <Head>
         <title>Sahla Business</title>
         <meta name="description" content="Sahla business description" />
+        <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
         
       </Head>
       <AboutUs language={language} />

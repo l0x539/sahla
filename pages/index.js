@@ -14,7 +14,7 @@ import Mechanic from '../assets/mechanic.svg'
 import Trade from '../assets/trade.svg'
 import Site from '../assets/web-site.svg'
 import { useRouter, withRouter } from 'next/router';
-import { get_language } from '../utils/requests';
+import { get_best_products, get_best_services, get_language } from '../utils/requests';
 import { API_HOST } from '../utils/constants';
 
 import Home from '../components/Home'
@@ -50,7 +50,9 @@ function HomePage({
     english_footer,
     arabic,
     arabic_navbar,
-    arabic_footer
+    arabic_footer,
+    best_products,
+    best_services
   }) {
   const router = useRouter();
 
@@ -83,9 +85,9 @@ function HomePage({
       <Head>
         <title>{language?language?.Title:'Sahla Business'}</title>
         <meta name="description" content={language?language?.description:"Sahla is an online based business company and commercial trade center that provides services for its customers and help advertise, spread and attract customers to businesses."} />
-        <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
+        <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />        
       </Head>
-      <Home services={BEST_SERVICES} products={BEST_PRODUCTS} language={language} SVGS={SVGS} goProduct={goProduct} goService={goService} />
+      <Home services={best_services} products={best_products} language={language} SVGS={SVGS} goProduct={goProduct} goService={goService} />
 
     </Layout>
   )
@@ -102,6 +104,9 @@ export async function getStaticProps(context) {
 	let arabic_navbar = (await get_language("navbar", "ar-DZ"))?.data;
 	let arabic_footer = (await get_language("footer", "ar-DZ"))?.data;
 
+  let best_products = (await get_best_products())?.data;
+  let best_services = (await get_best_services())?.data;
+
 	return {
 		props: {
 			english:english??null,
@@ -109,7 +114,9 @@ export async function getStaticProps(context) {
       english_footer:english_footer??null,
       arabic:arabic??null,
       arabic_navbar:arabic_navbar??null,
-      arabic_footer:arabic_footer??null
+      arabic_footer:arabic_footer??null,
+      best_products:best_products??null,
+      best_services:best_services??null,
 		},
 		revalidate: 5
 	}

@@ -762,3 +762,67 @@ export const get_language = async (page, lang=false) => {
 
     return response
 }
+
+export const get_best_products = async () => {
+    let response = axios.get(LOCAL_API_HOST + `/best_products`)
+        .then(
+            res => {
+                let obj = {};
+                switch (res.status) {
+                    case 200:
+                        obj.error = false;
+                        obj.data = res.data
+                        break
+                    case 501:
+                        obj.error = true;
+                        obj.message = res.error
+                        break
+                    default:
+                        obj.error = true;
+                        obj.message = "Somehing went wrong!"
+                        break;
+                }
+
+                return obj;
+            }
+        ).catch(err => {
+            return {
+                error: true,
+                message: err?.response?.data?.message
+            }
+    })
+
+    return response
+}
+
+export const get_best_services = async () => {
+    let response = axios.get(LOCAL_API_HOST + `/best_services`)
+        .then(
+            res => {
+                let obj = {};
+                switch (res.status) {
+                    case 200:
+                        obj.error = false;
+                        obj.data = res.data
+                        break
+                    case 501:
+                        obj.error = true;
+                        obj.message = res.error
+                        break
+                    default:
+                        obj.error = true;
+                        obj.message = "Somehing went wrong!"
+                        break;
+                }
+
+                return obj;
+            }
+        ).catch(err => {
+            return {
+                error: true,
+                message: err?.response?.data?.message
+            }
+    })
+
+    return response
+}

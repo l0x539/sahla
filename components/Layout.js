@@ -63,11 +63,6 @@ class Layout extends Component {
 
     render () {
         return (
-            <>
-            <Head>
-                <link rel="icon" href={this.props.navbarLang?(API_HOST + this.props.navbarLang?.favicon?.url):"/favicon.ico"} />
-                {/* <link rel="icon" type="image/png" href="https://sahlabusiness.com/assets/logoFooter.png" /> */}
-            </Head>
             <main className={`root ${this.state.theme}-theme`}>
                 <Nav language={this.props.navbarLang} handleThemeUpdate={this.handleThemeUpdate} setLogout={this.setLogout} user={this.state.user} loggedIn={this.state.loggedIn} setLogin={this.setLogin} user={this.state.user} API_HOST={API_HOST} resolved={this.state.resolved} />
                 <div className="content">
@@ -81,7 +76,6 @@ class Layout extends Component {
                 </footer>
                 
             </main>
-            </>
         )
     }
 }

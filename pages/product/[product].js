@@ -70,6 +70,7 @@ const Product = ({
             <Head>
                 <title>Error | Sahla Business</title>
                 <meta name="description" content={"Somehing Went wrong, " + p.data?.message} />
+                <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
                 
             </Head>
             <Message title={"Something Went wrong"} desc={p.data?.message} />

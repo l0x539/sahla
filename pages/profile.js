@@ -10,6 +10,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import UserProfile from "../components/Profile";
 import { useState } from 'react';
 import { get_language } from '../utils/requests'
+import { API_HOST } from '../utils/constants';
 
 import Message from '../components/Message'
 
@@ -129,6 +130,7 @@ function Profile({
       <Head>
         <title>Profile | Sahla Business</title>
         <meta name="description" content="Sahla business description" />
+        <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
         
       </Head>
       {/* <Message title={'Sahla Business'} desc={'Comming Soon!'} /> */}

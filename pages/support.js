@@ -4,6 +4,7 @@ import Contact from '../components/Contact'
 import Layout from '../components/Layout'
 import Message from '../components/Message'
 import { get_language } from '../utils/requests'
+import { API_HOST } from '../utils/constants';
 
 function AboutUS({
     english,
@@ -36,6 +37,7 @@ function AboutUS({
       <Head>
         <title>Sahla Business</title>
         <meta name="description" content="Sahla business description" />
+        <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
         
       </Head>
       {/* <Message title={'Sahla Business'} desc={'Comming Soon!'} /> */}

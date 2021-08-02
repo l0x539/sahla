@@ -11,6 +11,7 @@ import ProductsList from '../components/ProductsList'
 import { Preview } from '../components/Preview'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { get_language } from '../utils/requests'
+import { API_HOST } from '../utils/constants';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -88,6 +89,7 @@ function MyProducts({
                 <Head>
                   <title>My Products | Sahla Business</title>
                   <meta name="description" content="Sahla business description" />
+                  <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
                   
                 </Head><Message title={<span style={{color: "red"}}>Something went wrong!</span>} desc={<Loader type="TailSpin" />} />
               </Layout>

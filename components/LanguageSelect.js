@@ -1,4 +1,5 @@
 import { Component } from "react";
+import Router from 'next/router'
 
 
 class LanguageSelect extends Component {
@@ -37,14 +38,14 @@ class LanguageSelect extends Component {
     setArabic = async () => {
         if (localStorage.getItem("lang") !== "ar-DZ") {
             await localStorage.setItem("lang", "ar-DZ")
-            window.location.reload();
+            Router.push("/");
         }
     }
 
     setEnglish = async () => {
         if (localStorage.getItem("lang")) {
             await localStorage.removeItem("lang")
-            window.location.reload();
+            Router.push("/");
         }
     }
 
