@@ -4,6 +4,7 @@ import { get_me, get_user } from '../utils/requests';
 import Copyright from './Copyright';
 import Footer from './Footer';
 import Nav from './Nav';
+import Router from 'next/router'
 
 
 class Layout extends Component {
@@ -44,6 +45,8 @@ class Layout extends Component {
         this.setState({ jwt: undefined })
         this.setState({ user:undefined })
         this.setState({ loggedIn: false })
+        Router.push("/");
+
     }
 
     setLogin = (data) => {

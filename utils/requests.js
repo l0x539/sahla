@@ -619,6 +619,44 @@ export const place_order = async(data, config) => {
     return response;;
 }
 
+export const get_orders = async (token, type="") => {
+    let response = axios.get(LOCAL_API_HOST + `/orders${type?.length?`?type=${type}`:""}`,
+    {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    )
+        .then(
+            res => {
+                let obj = {};
+                switch (res.status) {
+                    case 200:
+                        obj.error = false;
+                        obj.data = res.data
+                        break
+                    case 501:
+                        obj.error = true;
+                        obj.message = res.error
+                        break
+                    default:
+                        obj.error = true;
+                        obj.message = "Somehing went wrong!"
+                        break;
+                }
+
+                return obj;
+            }
+        ).catch(err => {
+            return {
+                error: true,
+                message: err.response.data.message
+            }
+    })
+
+    return response
+}
+
 export const delete_product = async (token, id) => {
     let response = axios.delete(API_HOST + "/products/"+id,
         {

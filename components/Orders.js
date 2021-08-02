@@ -1,44 +1,23 @@
+import { useMemo } from 'react'
 import { useTable } from 'react-table'
 
-const columns = [
-    {
-      Header: 'My Orders',
-      columns: [
-        {
-          Header: 'type',
-          accessor: 'type',
-        },
-        {
-          Header: 'title',
-          accessor: 'title',
-        },
-        {
-          Header: 'phone',
-          accessor: 'phone',
-        },
-        {
-            Header: 'username',
-            accessor: 'username',
-        },
-        {
-            Header: 'email',
-            accessor: 'email',
-        },
-        {
-            Header: 'quantity',
-            accessor: 'quantity',
-        },
-        {
-            Header: 'status',
-            accessor: 'status',
-        },
-      ],
-    },
-  ]
 
-const Orders = () => {
-    const { data } = this.props;
 
+const Orders = ({data, title}) => {
+    const columns = useMemo(() => [
+        {
+          Header: title,
+          columns: data.length?Object.keys(data[0]).map((v) => {
+            return {
+              Header: v,
+              accessor: v
+            }
+          }):
+          [],
+        },
+      ], []);
+
+    
     const {
         getTableProps,
         getTableBodyProps,
@@ -49,8 +28,11 @@ const Orders = () => {
         columns,
         data,
       })
+
+      console.log("data", data);
+      console.log("columns", columns);
     return (
-        <div className="table">
+        <div className="orders__table">
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map(headerGroup => (

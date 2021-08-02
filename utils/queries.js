@@ -1,7 +1,7 @@
 import axios, { CancelToken } from 'axios'
 import { useQuery } from 'react-query'
 import { API_HOST } from './constants'
-import { get_me, get_product, get_products, get_products_user, get_service, get_services, get_services_user, get_user } from './requests'
+import { get_me, get_orders, get_product, get_products, get_products_user, get_service, get_services, get_services_user, get_user } from './requests'
 
 export const getProduct = (id) => {
     return useQuery(["product", id], async () => {
@@ -22,6 +22,14 @@ export const getService = (id) => {
 export const getUser = (token) => {
     return useQuery("user", async () => {
         return get_me(token)
+    }, {
+        staleTime: 1000
+    })
+}
+
+export const getOrders = (token, type="") => {
+    return useQuery(["orders", type], async () => {
+        return get_orders(token, type)
     }, {
         staleTime: 1000
     })

@@ -1,0 +1,21 @@
+.orders {
+    margin-top: 5rem;
+    min-height: 30rem;
+    border-radius: 0.6rem;
+    background-color: var(--col-container);
+    padding: 3rem;
+    &__myorders {
+        box-shadow: rgb(40 42 49 / 16%) 0px 1px 2px 0px;
+        padding: 1rem;
+        margin: 0 1rem;
+    }
+
+    &__title {
+        font-size: 2rem;
+        margin: 1rem;
+    }
+
+    &__table {
+        margin: 1rem;
+    }
+}

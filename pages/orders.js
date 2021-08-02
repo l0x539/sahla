@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import { useRouter, withRouter } from 'next/router';
+import Loader from 'react-loader-spinner';
+import { CustomerOrders } from '../components/CustomerOrders';
 import Layout from '../components/Layout'
 import Message from '../components/Message'
 import { MyOrders } from '../components/MyOrders';
+import { getOrders } from '../utils/queries';
 import { get_language } from '../utils/requests'
 
-function MyOrder({
+function Orders({
     english,
     english_navbar,
     english_footer,
@@ -19,32 +22,131 @@ function MyOrder({
   let navbarLang = english_navbar;
   let footerLang = english_footer;
   let isArabic = false
+
+  let queryOrders = false
+  let queryOrdersCustomer;
+
   if (typeof window !== 'undefined') {
-    localStorage.getItem("lang")
-    isArabic = true
+    if (localStorage.getItem("lang"))
+    if (localStorage.getItem("lang")==="ar-DZ") isArabic = true
+
+    if (!localStorage.getItem("jwt")) router.push(`/`);
+    
+    
     switch (localStorage.getItem("lang")) {
-      case "ar-DZ":
+        case "ar-DZ":
         language = arabic;
         navbarLang = arabic_navbar;
         footerLang = arabic_footer;
         break;
-      default:
-        break;
+        default:
+            break;
     }
+    queryOrders = getOrders(localStorage.getItem("jwt"))
+    queryOrdersCustomer = getOrders(localStorage.getItem("jwt"), "customer")
+    console.log("queryOrders", queryOrders);
+    console.log("queryOrdersCustomer", queryOrdersCustomer);
+    const o = []
+
+    if (queryOrders?.isLoading || queryOrdersCustomer?.isLoading) {
+        return (
+            <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
+            <Head>
+                <title>My Orders | Sahla Business</title>
+                <meta name="description" content="Sahla business description" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <div className="orders">
+                <div className="orders__loading">
+                    <Loader type="TailSpin" />
+                </div>
+            </div>
+            </Layout>
+
+        )
+    } else if (queryOrders.data?.error || queryOrdersCustomer.data?.error) {
+        return (
+            <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
+            <Head>
+                <title>My Orders | Sahla Business</title>
+                <meta name="description" content="Sahla business description" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <Message title={'Error'} desc={queryOrders.data.message} />
+            </Layout>
+        )
+    } else if (queryOrders.data?.data?.length || queryOrdersCustomer.data.data?.length) {
+        const products = queryOrders.data.data.filter((v, i) => {
+            return v.product
+        })
+
+        const customer_products = queryOrdersCustomer.data.data.filter((v, i) => {
+            return v.product
+        })
+
+        const services = queryOrders.data.data.filter((v, i) => {
+            return v.service
+        })
+
+        const customer_services = queryOrdersCustomer.data.data.filter((v, i) => {
+            return v.service
+        })
+
+
+        console.log("queryOrders.data.data", queryOrders.data.data);
+        console.log("products", products);
+        console.log("services", services);
+        return (
+            <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
+            <Head>
+                <title>My Orders | Sahla Business</title>
+                <meta name="description" content="Sahla business description" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <div className="orders">
+                <MyOrders products={products} services={services} />
+                <CustomerOrders products={customer_products} services={customer_services} />
+            </div>
+            </Layout>
+        )
+    } else {
+        return (
+            <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
+            <Head>
+                <title>My Orders | Sahla Business</title>
+                <meta name="description" content="Sahla business description" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <div className="orders">
+                {/* <MyOrders products={o} services={o} />
+                <CustomerOrders products={o} services={o} /> */}
+            </div>
+            </Layout>
+        )
+
+    }
+        
+  } else {
+      return (
+        <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
+        <Head>
+          <title>Sahla Business</title>
+          <meta name="description" content="Sahla business description" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className="orders">
+            <div className="orders__loading">
+                <Loader type="TailSpin" />
+            </div>
+        </div>
+        
+      </Layout>
+      )
   }
-  return (
-    <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
-      <Head>
-        <title>My Order | Sahla Business</title>
-        <meta name="description" content="Sahla business description" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <MyOrders />      
-    </Layout>
-  )
+  
 }
 
-export default withRouter(MyOrder);
+export default withRouter(Orders);
 
 export async function getStaticProps(context) {
 
