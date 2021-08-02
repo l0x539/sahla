@@ -51,26 +51,29 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
                 </h2>
                 <div className="content__fr">
 
-                    {language?[1, 2, 3].map((v, i) => {
+                    {[1, 2, 3].map((v, i) => {
                     return (
                         <Paper key={i} isArabic={/[\u0600-\u06FF]/.test(language?.how_to_join)} otherSide={
-                        <>
-                            <h4 className="paper__title">
-                            {language[`join_step${v}_title`]}
-                            </h4>
-                            <div className="paper__desc">
-                            {
-                                language[`join_step${v}_desc`].split("\n").map((v, i) => <p key={i}>{v}</p>)
-                            }
-                            </div>
-                        </>
+                            language?
+                            <>
+                                <h4 className="paper__title">
+                                {language[`join_step${v}_title`]}
+                                </h4>
+                                <div className="paper__desc">
+                                {
+                                    language[`join_step${v}_desc`].split("\n").map((v, i) => <p key={i}>{v}</p>)
+                                }
+                                </div>
+                            </>
+                            :
+                            null
                         } >
                         <div className="paper__circle">
                             <p>{v}</p>
                         </div>
                         </Paper>
                     )
-                    }):null}
+                    })}
                 </div>
 
                 </div>

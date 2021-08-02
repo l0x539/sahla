@@ -35,7 +35,6 @@ function AboutUS({
         break;
     }
   }
-  console.log(isArabic);
   return (
     <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
       <Head>
