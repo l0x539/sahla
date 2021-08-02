@@ -20,14 +20,11 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
                             <div className="img_cont"  />
                         </div>)
                 })
-                :<>
+                :
                     <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}} >
                     <div className="img_cont"  />
                     </div>
-                    <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}}>
-                        
-                    </div>
-                </>
+                    
                 }
             </Carousel>
             <SearchBar isArabic={/[\u0600-\u06FF]/.test(language?.how_to_join)?true:false} placeholder={language?language?.search_pleaceholder:"... إبحث عن خدمة أو منتج الآن"} />
@@ -53,7 +50,8 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
                     {language?language?.how_to_join:"كيف تنظم للعمل مع سهلة"}
                 </h2>
                 <div className="content__fr">
-                    {[1, 2, 3].map((v, i) => {
+
+                    {language?[1, 2, 3].map((v, i) => {
                     return (
                         <Paper key={i} isArabic={/[\u0600-\u06FF]/.test(language?.how_to_join)} otherSide={
                         <>
@@ -72,7 +70,7 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
                         </div>
                         </Paper>
                     )
-                    })}
+                    }):null}
                 </div>
 
                 </div>

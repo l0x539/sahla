@@ -29,7 +29,7 @@ export default class AboutUs extends Component {
                 <ReactMarkdown>{this.state.language?.content}</ReactMarkdown>
                 </div>
             </div>:
-            "no"
+            ""
         )
     }
 }

@@ -18,13 +18,13 @@ class Layout extends Component {
     }
 
     async componentDidMount(){
-        this.setState({isArabic:/[\u0600-\u06FF]/.test(this.props.footerLang.home)})
+        this.setState({isArabic:/[\u0600-\u06FF]/.test(this.props.footerLang?.home)})
         if(localStorage.getItem('theme')) {
             this.setState({ theme: localStorage.getItem('theme') })
         }
         if(localStorage.getItem('jwt')) {
             const me = await get_me(localStorage.getItem('jwt'))
-            const user = await get_user(localStorage.getItem('jwt'), me.data.id)
+            const user = await get_user(localStorage.getItem('jwt'), me.data?.id)
             
             if (!user.error) {
                 this.setState({ jwt: localStorage.getItem('jwt') })
