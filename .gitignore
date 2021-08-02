@@ -40,7 +40,7 @@ yarn-error.log*
 /public/fonts
 
 # secrets
-/utils/constant.js
+/utils/constants.js
 
 # yarn
 yarn.lock
