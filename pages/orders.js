@@ -52,7 +52,7 @@ function Orders({
             <Head>
                 <title>My Orders | Sahla Business</title>
                 <meta name="description" content="Sahla business description" />
-                <link rel="icon" href="/favicon.ico" />
+                
             </Head>
             <div className="orders">
                 <div className="orders__loading">
@@ -68,7 +68,7 @@ function Orders({
             <Head>
                 <title>My Orders | Sahla Business</title>
                 <meta name="description" content="Sahla business description" />
-                <link rel="icon" href="/favicon.ico" />
+                
             </Head>
             <Message title={'Error'} desc={queryOrders.data.message} />
             </Layout>
@@ -96,7 +96,7 @@ function Orders({
             <Head>
                 <title>My Orders | Sahla Business</title>
                 <meta name="description" content="Sahla business description" />
-                <link rel="icon" href="/favicon.ico" />
+                
             </Head>
             <div className="orders">
                 <MyOrders products={products} services={services} />
@@ -110,7 +110,7 @@ function Orders({
             <Head>
                 <title>My Orders | Sahla Business</title>
                 <meta name="description" content="Sahla business description" />
-                <link rel="icon" href="/favicon.ico" />
+                
             </Head>
             <div className="orders">
                 {/* <MyOrders products={o} services={o} />
@@ -127,7 +127,7 @@ function Orders({
         <Head>
           <title>Sahla Business</title>
           <meta name="description" content="Sahla business description" />
-          <link rel="icon" href="/favicon.ico" />
+          
         </Head>
         <div className="orders">
             <div className="orders__loading">

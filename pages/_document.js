@@ -18,7 +18,6 @@ class MyDocument extends Document {
                     <meta property="og:title"              content="Sahla Business" />
                     <meta property="og:description"        content="Find best services and products nearby you." />
                     <meta property="og:image"              content="https://sahlabusiness.com/assets/preview.png" />
-                    <link rel="icon" type="image/png" href="https://sahlabusiness.com/assets/logoFooter.png" />
                 </Head>
                 <body>
                     <Main />

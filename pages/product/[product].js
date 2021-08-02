@@ -58,7 +58,7 @@ const Product = ({
             <Head>
                 <title>Loading.. | Sahla Business</title>
                 <meta name="description" content={"Somehing Went wrong, " + p.data?.message} />
-                <link rel="icon" href="/favicon.ico" />
+                
             </Head>
             <Message desc={<Message title={<Loader type="Rings" />} />} />
             </Layout>
@@ -70,7 +70,7 @@ const Product = ({
             <Head>
                 <title>Error | Sahla Business</title>
                 <meta name="description" content={"Somehing Went wrong, " + p.data?.message} />
-                <link rel="icon" href="/favicon.ico" />
+                
             </Head>
             <Message title={"Something Went wrong"} desc={p.data?.message} />
             </Layout>
@@ -88,7 +88,7 @@ const Product = ({
         <Head>
             <title>{prod.title} | Sahla Business</title>
             <meta name="description" content="Sahla business Products, search through Sahla available services nearby you." />
-            <link rel="icon" href="/favicon.ico" />
+            
         </Head>
         <div className="show" >
             <div className="show-header" dir={isArabicContent?"rtl":"ltr"}>

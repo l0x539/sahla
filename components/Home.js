@@ -27,10 +27,10 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
                     
                 }
             </Carousel>
-            <SearchBar isArabic={/[\u0600-\u06FF]/.test(language?.how_to_join)?true:false} placeholder={language?language?.search_pleaceholder:"... إبحث عن خدمة أو منتج الآن"} />
+            <SearchBar isArabic={/[\u0600-\u06FF]/.test(language?.how_to_join)?true:false} placeholder={language?.search_pleaceholder??"... إبحث عن خدمة أو منتج الآن"} />
             <div className="main-divider"></div>
             <div className="content__holder">
-                <h2 className={`content__title ${/[\u0600-\u06FF]/.test(language?.service_title)?"arabic":""}`}>
+                <h2 className={`content__title ${/[\u0600-\u06FF]/.test(language?.services_title)?"arabic":""}`}>
                 {language?language?.services_title:"أفضل الخدمات"}
                 </h2>
                 <CardCarousel preview={goService} items={services} />

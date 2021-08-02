@@ -40,7 +40,7 @@ function AboutUS({
       <Head>
         <title>Sahla Business</title>
         <meta name="description" content="Sahla business description" />
-        <link rel="icon" href="/favicon.ico" />
+        
       </Head>
       <AboutUs language={language} />
       

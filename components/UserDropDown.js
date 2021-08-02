@@ -16,7 +16,7 @@ const UserDropDown = ({setLogout, user, language, API_HOST}) => {
     return (
         <Dropdown
           inline
-          trigger={<><Avatar round={true} size="50" src={ (user.avatar&&user.avatar?.url)>0?API_HOST + user.avatar?.url: `https://avatars.dicebear.com/api/avataaars/${user.id}.svg`} /></>}
+          trigger={<><Avatar round={true} size="50" src={ (user.avatar&&user.avatar?.url)?(API_HOST + user.avatar?.url): `https://avatars.dicebear.com/api/avataaars/${user.id}.svg`} /></>}
         >
             <Dropdown.Menu>
                 <Link href={'/profile'}>

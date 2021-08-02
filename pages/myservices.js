@@ -88,7 +88,7 @@ function MyServices({
                 <Head>
                   <title>My Services | Sahla Business</title>
                   <meta name="description" content="Sahla business description" />
-                  <link rel="icon" href="/favicon.ico" />
+                  
                 </Head><Message title={<span style={{color: "red"}}>Something went wrong!</span>} desc={<Loader type="TailSpin" />} />
               </Layout>
               )
@@ -100,7 +100,7 @@ function MyServices({
           <Head>
             <title>My Services | Sahla Business</title>
             <meta name="description" content="Sahla business description" />
-            <link rel="icon" href="/favicon.ico" />
+            
           </Head>
           <ServicesList isLoading={queryServices.isLoading} setSearch={setSearch} isLoggedIn services={services} preview={openModal} />
           <Modal
@@ -131,7 +131,7 @@ function MyServices({
       <Head>
         <title>My Services | Sahla Business</title>
         <meta name="description" content="Sahla business description" />
-        <link rel="icon" href="/favicon.ico" />
+        
       </Head><Message desc={<Loader type="TailSpin" />} />
     </Layout>
     )

@@ -88,7 +88,7 @@ function MyProducts({
                 <Head>
                   <title>My Products | Sahla Business</title>
                   <meta name="description" content="Sahla business description" />
-                  <link rel="icon" href="/favicon.ico" />
+                  
                 </Head><Message title={<span style={{color: "red"}}>Something went wrong!</span>} desc={<Loader type="TailSpin" />} />
               </Layout>
               )
@@ -100,7 +100,7 @@ function MyProducts({
           <Head>
             <title>My Products | Sahla Business</title>
             <meta name="description" content="Sahla business description" />
-            <link rel="icon" href="/favicon.ico" />
+            
           </Head>
           <ProductsList isLoading={queryProducts.isLoading} setSearch={setSearch} isLoggedIn products={products} preview={openModal} />
           <Modal
@@ -131,7 +131,7 @@ function MyProducts({
       <Head>
         <title>My Products | Sahla Business</title>
         <meta name="description" content="Sahla business description" />
-        <link rel="icon" href="/favicon.ico" />
+        
       </Head><Message desc={<Loader type="TailSpin" />} />
     </Layout>
     )
