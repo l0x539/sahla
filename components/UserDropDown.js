@@ -20,20 +20,20 @@ const UserDropDown = ({setLogout, user, language, API_HOST}) => {
         >
             <Dropdown.Menu>
                 <Link href={'/profile'}>
-                    <Dropdown.Item text={language?language.profile:'Profile'} />
+                    <Dropdown.Item text={language?language?.profile:'Profile'} />
                 </Link>
                 <Link href={'/orders'}>
-                    <Dropdown.Item text={language?language.myorders:'My Orders'} />
+                    <Dropdown.Item text={language?language?.myorders:'My Orders'} />
                 </Link>
                 <Dropdown.Divider />
                 <Link href={'/myservices'}>
-                    <Dropdown.Item text={language?language.myservices:'My Services'} />
+                    <Dropdown.Item text={language?language?.myservices:'My Services'} />
                 </Link>
                 <Link href={'/myproducts'}>
-                    <Dropdown.Item text={language?language.myproducts:'My Products'} />
+                    <Dropdown.Item text={language?language?.myproducts:'My Products'} />
                 </Link>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={logOutHandle} text={language?language.logout:'Logout'} />
+                <Dropdown.Item onClick={logOutHandle} text={language?language?.logout:'Logout'} />
             </Dropdown.Menu>
         </Dropdown>
     )

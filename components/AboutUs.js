@@ -19,7 +19,7 @@ export default class AboutUs extends Component {
     render() {
         return (
             this.state.language?
-            <div className={`aboutus ${/[\u0600-\u06FF]/.test(this.state.language.title)?"arabic":""}`}>
+            <div className={`aboutus ${/[\u0600-\u06FF]/.test(this.state.language?.title)?"arabic":""}`}>
                 <div className="aboutus__title">
                 <h1>
                     {this.state.language?.title}

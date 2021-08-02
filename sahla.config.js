@@ -8,7 +8,7 @@ module.exports = {
           env: {
               "PORT": 3000,
               "NODE_ENV": "production",
-              "MAIN_URL": "https://rixeld.com",
+              "MAIN_URL": "https://sahlabusiness.com",
                 "NODE_ENV": "production",
           }
         }

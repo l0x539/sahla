@@ -86,25 +86,25 @@ export default class Registration extends Component {
         const {language} = this.props;
         return <Tabs>
         <TabList>
-          <Tab>{language?language.signup:'Sign UP'}</Tab>
-          <Tab>{language?language.login:'Log In'}</Tab>
+          <Tab>{language?language?.signup:'Sign UP'}</Tab>
+          <Tab>{language?language?.login:'Log In'}</Tab>
         </TabList>
     
         <TabPanel>
             <form onSubmit={this.handleSignup} className="input">
                 <div className="info-card info-card__content">
-                    <h3 className="info-card__header">{language?language.create_an_account:'Create an account'}</h3>
-                    <input type="text" name="username" className="input__main" placeholder={language?language.username:"Username"} />
-                    <input type="email" name="email" className="input__main" placeholder={language?language.email:"Email"} />
-                    <input type="password" onChange={this.handlePasswordStrengh} name="passwd" className="input__main" placeholder={language?language.password:"Password"} />
-                    <input type="password" name="passwd2" className="input__main" placeholder={language?language.confirm_password:"Confirm Password"} />
+                    <h3 className="info-card__header">{language?language?.create_an_account:'Create an account'}</h3>
+                    <input type="text" name="username" className="input__main" placeholder={language?language?.username:"Username"} />
+                    <input type="email" name="email" className="input__main" placeholder={language?language?.email:"Email"} />
+                    <input type="password" onChange={this.handlePasswordStrengh} name="passwd" className="input__main" placeholder={language?language?.password:"Password"} />
+                    <input type="password" name="passwd2" className="input__main" placeholder={language?language?.confirm_password:"Confirm Password"} />
                     <ReCAPTCHA
                         sitekey={GOOGLE_PUBLIC_SECRET}
                         onChange={this.recaptchaChange}
                     />
                     <button type="submit" className="btn__big btn_content">
                         <span className="btn__big--front">
-                            {language?language.signup:'Sign Up'}
+                            {language?language?.signup:'Sign Up'}
                         </span>
                     </button>
                     <br/>
@@ -116,12 +116,12 @@ export default class Registration extends Component {
         <TabPanel>
         <form onSubmit={this.handleLogin} className="input">
                 <div className="info-card info-card__content">
-                    <h3 className="info-card__header">{language?language.login_to_your_account:'Login to your account'}</h3>
-                    <input type="text" name="email" className="input__main" placeholder={language?language.email_or_username:"Email or Username"} />
-                    <input type="password" name="password" className="input__main" placeholder={language?language.password:"Password"} />
+                    <h3 className="info-card__header">{language?language?.login_to_your_account:'Login to your account'}</h3>
+                    <input type="text" name="email" className="input__main" placeholder={language?language?.email_or_username:"Email or Username"} />
+                    <input type="password" name="password" className="input__main" placeholder={language?language?.password:"Password"} />
                     <button type="submit" className="btn__big btn_content">
                         <span className="btn__big--front">
-                            {language?language.login:'Log In'}
+                            {language?language?.login:'Log In'}
                         </span>
                     </button>
                     <br/>
