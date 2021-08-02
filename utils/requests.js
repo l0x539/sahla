@@ -29,7 +29,7 @@ export const get_products = async (start=0, limit=32, sort="_sort=orders:desc,ra
 
                         return {
                             error: true,
-                            message: err.response.data.message
+                            message: err?.response?.data?.message
                         }
                     })
     return response;
@@ -60,7 +60,7 @@ export const get_services = async (start=0, limit=32, sort="_sort=orders:desc,ra
 
                         return {
                             error: true,
-                            message: err.response.data.message
+                            message: err?.response?.data?.message
                         }
                     })
     return response;
@@ -91,7 +91,7 @@ export const get_categories = async (type, locale=false) => {
 
                         return {
                             error: true,
-                            message: err.response.data.message
+                            message: err?.response?.data?.message
                         }
                     })
     return response;
@@ -123,7 +123,7 @@ export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=
 
                         return {
                             error: true,
-                            message: err.response.data.message
+                            message: err?.response?.data?.message
                         }
                     })
     return response;
@@ -154,7 +154,7 @@ export const get_services_user = async (user_id, start=0, limit=32, sort="_sort=
 
                         return {
                             error: true,
-                            message: err.response.data.message
+                            message: err?.response?.data?.message
                         }
                     })
     return response;
@@ -185,7 +185,7 @@ export const get_product = async (id) => {
 
                         return {
                             error: true,
-                            message: err.response.data.message
+                            message: err?.response?.data?.message
                         }
                     })
     return response;
@@ -216,7 +216,7 @@ export const get_service = async (id) => {
 
                         return {
                             error: true,
-                            message: err.response.data.message
+                            message: err?.response?.data?.message
                         }
                     })
     return response;
@@ -258,7 +258,7 @@ export const contact_us = async (title, email, content, recaptcha) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -301,7 +301,7 @@ export const signup = async (username, email, passwd, secret) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -342,7 +342,7 @@ export const login = async (email, password) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -379,7 +379,7 @@ export const get_me = async (token) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
 
@@ -416,7 +416,7 @@ export const get_user = async (token, id) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
 
@@ -447,7 +447,7 @@ export const upload_image = async(formData, config) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -479,7 +479,7 @@ export const upload_avatar = async(data, config, user_id) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -518,7 +518,7 @@ export const update_profile = async (data, token, id) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -550,7 +550,7 @@ export const add_product = async(data, config) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -581,7 +581,7 @@ export const add_service = async(data, config) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -612,7 +612,7 @@ export const place_order = async(data, config) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
     
@@ -650,7 +650,7 @@ export const get_orders = async (token, type="") => {
         ).catch(err => {
             return {
                 error: true,
-                message: err.response.data.message
+                message: err?.response?.data?.message
             }
     })
 
@@ -687,7 +687,7 @@ export const delete_product = async (token, id) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
 
@@ -724,7 +724,7 @@ export const delete_service = async (token, id) => {
     ).catch(err => {
         return {
             error: true,
-            message: err.response.data.message
+            message: err?.response?.data?.message
         }
     })
 
@@ -756,7 +756,7 @@ export const get_language = async (page, lang=false) => {
         ).catch(err => {
             return {
                 error: true,
-                message: err.response.data.message
+                message: err?.response?.data?.message
             }
     })
 

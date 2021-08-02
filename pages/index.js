@@ -85,7 +85,7 @@ function HomePage({
         <meta name="description" content={language?language.description:"Sahla is an online based business company and commercial trade center that provides services for its customers and help advertise, spread and attract customers to businesses."} />
         <link rel="icon" href={language?(API_HOST + language.favicon.url):"/favicon.ico"} />
       </Head>
-      <Home language={language} SVGS={SVGS} goProduct={goProduct} goService={goService} />
+      <Home services={BEST_SERVICES} products={BEST_PRODUCTS} language={language} SVGS={SVGS} goProduct={goProduct} goService={goService} />
 
     </Layout>
   )
