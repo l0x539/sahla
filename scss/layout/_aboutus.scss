@@ -1,0 +1,35 @@
+.aboutus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5rem 0;
+    padding: 2rem;
+    font-size: 3rem;
+    line-height: 5rem;
+
+    &.arabic {
+        font-family: $font-somar;
+        text-align: right;
+    }
+
+    &__title {
+        justify-content: center;
+        display: flex;
+        margin-bottom: 2rem;
+    }
+
+    &__title h1 {
+        border-bottom: 0.2rem solid var(--col-primary);
+    }
+
+    &__content h3 {
+        margin: 0 2rem;
+        margin-top: 2rem;
+
+    }
+
+    &__content p {
+        margin: 0 4rem;
+
+    }
+}

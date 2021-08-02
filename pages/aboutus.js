@@ -3,6 +3,9 @@ import { withRouter } from 'next/router';
 import Layout from '../components/Layout'
 import Message from '../components/Message'
 import { get_language } from '../utils/requests'
+import ReactMarkdown from 'react-markdown'
+import Loader from 'react-loader-spinner'
+import AboutUs from '../components/AboutUs';
 
 function AboutUS({
     english,
@@ -18,8 +21,10 @@ function AboutUS({
   let footerLang = english_footer;
   let isArabic = false
   if (typeof window !== 'undefined') {
-    localStorage.getItem("lang")
-    isArabic = true
+    if (localStorage.getItem("lang")==="ar-DZ") {
+      isArabic = true
+    }
+
     switch (localStorage.getItem("lang")) {
       case "ar-DZ":
         language = arabic;
@@ -30,7 +35,7 @@ function AboutUS({
         break;
     }
   }
-
+  console.log(isArabic);
   return (
     <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
       <Head>
@@ -38,7 +43,7 @@ function AboutUS({
         <meta name="description" content="Sahla business description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Message title={'Sahla Business'} desc={'Comming Soon!'} />
+      <AboutUs language={language} />
       
     </Layout>
   )
@@ -49,10 +54,10 @@ export default withRouter(AboutUS);
 
 export async function getStaticProps(context) {
 
-	let english = (await get_language("home"))?.data;
+	let english = (await get_language("aboutus"))?.data;
 	let english_navbar = (await get_language("navbar"))?.data;
 	let english_footer = (await get_language("footer"))?.data;
-	let arabic = (await get_language("home", "ar-DZ"))?.data;
+	let arabic = (await get_language("aboutus", "ar-DZ"))?.data;
 	let arabic_navbar = (await get_language("navbar", "ar-DZ"))?.data;
 	let arabic_footer = (await get_language("footer", "ar-DZ"))?.data;
 

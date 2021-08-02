@@ -14,7 +14,6 @@ export class MyOrders extends Component {
 
 
     render () {
-        console.log("hi");
         return (
             <div className="orders__myorders">
                 <h1 className="orders__title">

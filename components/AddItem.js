@@ -84,7 +84,6 @@ class AddItem extends Component {
         recaptcha,
         }
 
-        console.log("data", data);
         
         const res = await this.props.add_item(data, {
                                                 headers: { 

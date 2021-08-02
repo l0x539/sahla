@@ -21,7 +21,6 @@ export class CustomerOrders extends Component {
     }
 
     render () {
-        console.log("hi2");
 
         return (
             <div className="orders__myorders">

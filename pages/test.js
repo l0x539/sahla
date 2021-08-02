@@ -40,8 +40,8 @@ function MyServices({
   let footerLang = english_footer;
   let isArabic = false
   if (typeof window !== 'undefined') {
-    localStorage.getItem("lang")
-    isArabic = true
+    if (localStorage.getItem("lang")==="ar-DZ") isArabic = true
+
     switch (localStorage.getItem("lang")) {
       case "ar-DZ":
         language = arabic;

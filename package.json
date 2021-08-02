@@ -28,6 +28,7 @@
     "react-dropzone": "^10.2.2",
     "react-google-recaptcha": "^2.1.0",
     "react-loader-spinner": "^4.0.0",
+    "react-markdown": "^6.0.3",
     "react-notifications": "^1.7.2",
     "react-perfect-scrollbar": "^1.5.8",
     "react-query": "^3.19.1",

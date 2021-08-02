@@ -44,8 +44,6 @@ function Orders({
     }
     queryOrders = getOrders(localStorage.getItem("jwt"))
     queryOrdersCustomer = getOrders(localStorage.getItem("jwt"), "customer")
-    console.log("queryOrders", queryOrders);
-    console.log("queryOrdersCustomer", queryOrdersCustomer);
     const o = []
 
     if (queryOrders?.isLoading || queryOrdersCustomer?.isLoading) {
@@ -93,9 +91,6 @@ function Orders({
         })
 
 
-        console.log("queryOrders.data.data", queryOrders.data.data);
-        console.log("products", products);
-        console.log("services", services);
         return (
             <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
             <Head>

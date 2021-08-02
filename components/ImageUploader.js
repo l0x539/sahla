@@ -19,7 +19,6 @@ export const ImageUploader = (props) => {
         const formData = new FormData();
 
         Array.from(event.target.files).forEach((file) => {
-            console.log(file);
             formData.append(event.target.name, file);
         });
 

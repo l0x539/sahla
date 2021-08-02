@@ -1,14 +1,9 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; // https://www.npmjs.com/package/react-responsive-carousel
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import SearchBar from '../components/SearchBar';
-import CardCarousel from '../components/CardCarousel';
-import Paper from '../components/Paper';
-import Category from '../components/Category';
+
 
 import Web from '../assets/web.svg'
 import Accessoies from '../assets/accessories.svg'
@@ -21,6 +16,8 @@ import Site from '../assets/web-site.svg'
 import { useRouter, withRouter } from 'next/router';
 import { get_language } from '../utils/requests';
 import { API_HOST } from '../utils/constants';
+
+import Home from '../components/Home'
 
 
 
@@ -47,7 +44,7 @@ const SVGS = [
                 <DesignThinking />,
               ]
 
-function Home({
+function HomePage({
     english,
     english_navbar,
     english_footer,
@@ -62,8 +59,8 @@ function Home({
   let footerLang = english_footer;
   let isArabic = false
   if (typeof window !== 'undefined') {
-    localStorage.getItem("lang")
-    isArabic = true
+    if (localStorage.getItem("lang")==="ar-DZ") isArabic = true
+
     switch (localStorage.getItem("lang")) {
       case "ar-DZ":
         language = arabic;
@@ -88,101 +85,13 @@ function Home({
         <meta name="description" content={language?language.description:"Sahla is an online based business company and commercial trade center that provides services for its customers and help advertise, spread and attract customers to businesses."} />
         <link rel="icon" href={language?(API_HOST + language.favicon.url):"/favicon.ico"} />
       </Head>
-      <Carousel swiping showStatus={false} autoPlay swipeable showThumbs={false}>
-        {
-          language?
-          language.carousel_images.map((v, i) => {
-            return (<div key={i} className="carousel__img" style={{backgroundImage: `url(${API_HOST+v.url})`}} >
-                    <div className="img_cont"  />
-                </div>)
-          })
-          :<>
-            <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}} >
-              <div className="img_cont"  />
-            </div>
-            <div className="carousel__img" style={{backgroundImage: "url(/assets/website-builder-workplace-interior-3d-rendering.jpg)"}}>
-                
-            </div>
-          </>
-        }
-      </Carousel>
-      <SearchBar isArabic={isArabic?true:false} placeholder={language?language.search_pleaceholder:"... إبحث عن خدمة أو منتج الآن"} />
-      <div className="main-divider"></div>
-      <div className="content__holder">
-        <h2 className={`content__title ${isArabic?"arabic":""}`}>
-          {language?language.services_title:"أفضل الخدمات"}
-        </h2>
-        <CardCarousel preview={goService} items={BEST_SERVICES} />
-      </div>
-      <div className="main-divider"></div>
-      <div className="content__holder">
-        <h2 className={`content__title ${isArabic?"arabic":""}`}>
-          {language?language.products_title:"أفضل المنتجات"}
-        </h2>
-        <CardCarousel preview={goProduct} items={BEST_PRODUCTS} />
-      </div>
-      <div className="main-divider"></div>
-
-      <div className="content__darker-holder">
-        <div className="content">
-          <h2 className={`content__darker-holder-title${isArabic?"arabic":""}`}>
-            {language?language.how_to_join:"كيف تنظم للعمل مع سهلة"}
-          </h2>
-          <div className="content__fr">
-            {[1, 2, 3].map((v, i) => {
-              return (
-                <Paper key={i} isArabic={isArabic} otherSide={
-                  <>
-                    <h4 className="paper__title">
-                      {language[`join_step${v}_title`]}
-                    </h4>
-                    <div className="paper__desc">
-                      {
-                        language[`join_step${v}_desc`].split("\n").map((v, i) => <p key={i}>{v}</p>)
-                      }
-                    </div>
-                  </>
-                } >
-                  <div className="paper__circle">
-                    <p>{v}</p>
-                  </div>
-                </Paper>
-              )
-            })}
-          </div>
-
-        </div>
-      </div>
-      <div className="main-divider"></div>
-
-      <div className="content__image-holder">
-        <div className="content">
-            <h2 className={`content__darker-holder-title ${isArabic?"arabic":""}`}>
-              {language.categories_title}
-            </h2>
-              <div className="content__image-holder__categories">
-                {language.categories.filter((_, i) => i <4).map((v, i) => {
-                  return (
-                      <Category key={i} isArabic={isArabic} title={v.title} desc={v.description} svg={SVGS[i]} />
-                  )
-                })}
-              </div>
-              <div className="content__image-holder__categories">
-                {language.categories.filter((_, i) => i >=4).map((v, i) => {
-                  return (
-                      <Category key={i+4} isArabic={isArabic} title={v.title} desc={v.description} svg={SVGS[i+4]} />
-                  )
-                })}
-              </div>
-            
-        </div>
-      </div>
+      <Home language={language} SVGS={SVGS} goProduct={goProduct} goService={goService} />
 
     </Layout>
   )
 }
 
-export default withRouter(Home);
+export default withRouter(HomePage);
 
 export async function getStaticProps(context) {
 

@@ -54,7 +54,6 @@ export default class Registration extends Component {
     }
 
     handlePasswordStrengh = (e) => {
-        console.log(e.value);
     }
 
     handleLogin = async (e) => {

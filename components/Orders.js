@@ -29,8 +29,6 @@ const Orders = ({data, title}) => {
         data,
       })
 
-      console.log("data", data);
-      console.log("columns", columns);
     return (
         <div className="orders__table">
             <table {...getTableProps()}>
