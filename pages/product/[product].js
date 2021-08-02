@@ -95,16 +95,16 @@ const Product = ({
                 <h1 className={"show-title " + (isArabicContent?"arabic":"")}>{prod.title}</h1>
                 <div className="show-header--right">
                     <span className="show-user">{prod.user.username}</span>
-                    <Avatar name={prod.user.username} round={true} size="50" src={ (prod.user.avatar&&prod.user.avatar?.url)?API_HOST + prod.user.avatar.url: `https://avatars.dicebear.com/api/avataaars/${prod.user.id}.svg`} />
+                    <Avatar name={prod.user.username} round={true} size="50" src={ (prod.user.avatar&&prod.user.avatar??.url)?API_HOST + prod.user.avatar?.url: `https://avatars.dicebear.com/api/avataaars/${prod.user.id}.svg`} />
 
                 </div>
             </div>
             <Carousel swiping  swipeable height={"20rem"}>
                 {prod.images?.map((v, i)=> {
                     return (
-                        // <img src={API_HOST+(v.formats.medium?v.formats.medium.url:v.formats.small.url)} />
-                        <div key={i} className="carousel__img" style={{ backgroundImage: `url(${API_HOST+(v.formats?(v.formats.medium?v.formats.medium.url:(v.formats.small?v.formats.small.url:v.url)):v.url)})`, height: 500, backgroundPosition: 'center', backgroundSize: 'contain', backgroundRepeat: "no-repeat", backgroundColor: "rgb(51, 55, 64)"}}>
-                            <img style={{zIndex: -5, position: "relative"}} src={API_HOST+(v.formats?(v.formats.medium?v.formats.medium.url:(v.formats.small?v.formats.small.url:v.url)):v.url)}  />
+                        // <img src={API_HOST+(v.formats.medium?v.formats.medium?.url:v.formats.small?.url)} />
+                        <div key={i} className="carousel__img" style={{ backgroundImage: `url(${API_HOST+(v.formats?(v.formats.medium?v.formats.medium?.url:(v.formats.small?v.formats.small?.url:v?.url)):v?.url)})`, height: 500, backgroundPosition: 'center', backgroundSize: 'contain', backgroundRepeat: "no-repeat", backgroundColor: "rgb(51, 55, 64)"}}>
+                            <img style={{zIndex: -5, position: "relative"}} src={API_HOST+(v.formats?(v.formats.medium?v.formats.medium?.url:(v.formats.small?v.formats.small?.url:v?.url)):v?.url)}  />
                         </div>
                     )
                 })}

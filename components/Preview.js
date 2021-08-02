@@ -91,7 +91,7 @@ export const Preview = ({ order, service }) => {
               <>
                   <CardHeader
                     avatar={
-                    <Avatar aria-label="recipe" src={order.user?.avatar&&order.user?.avatar.url?.length>0?API_HOST+order.user?.avatar?.url: `https://avatars.dicebear.com/api/avataaars/${order.user?.id}.svg`}>
+                    <Avatar aria-label="recipe" src={order.user?.avatar&&order.user?.avatar?.url?.length>0?API_HOST+order.user?.avatar??.url: `https://avatars.dicebear.com/api/avataaars/${order.user?.id}.svg`}>
                         {order?.user?.username.toUpperCase()}
                     </Avatar>
                     }
@@ -112,7 +112,7 @@ export const Preview = ({ order, service }) => {
                     {order?.images?.length?
                       order.images.map((v, i) => {
                         return (
-                          <div className="carousel__img" style={{backgroundImage: `url(${API_HOST + v.url})`, height: 300, backgroundPosition: 'center', backgroundSize: 'cover'}}>
+                          <div className="carousel__img" style={{backgroundImage: `url(${API_HOST + v?.url})`, height: 300, backgroundPosition: 'center', backgroundSize: 'cover'}}>
                           </div>
                         )
                       })

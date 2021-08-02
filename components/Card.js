@@ -33,7 +33,7 @@ class Card extends Component {
                     :
                     null
                 }
-                <div className="card__img" style={{backgroundImage: `url(${this.props.order?.images?.length?API_HOST + this.props.order.images[0].url:"http://beepeers.com/assets/images/commerces/default-image.jpg"})` }} />
+                <div className="card__img" style={{backgroundImage: `url(${this.props.order?.images?.length?API_HOST + this.props.order.images[0]?.url:"http://beepeers.com/assets/images/commerces/default-image.jpg"})` }} />
                 <div className={"card__content " + (this.state.isArabic?"arabic":"")}>
                     <h1 className="card__title">
                         {this.props.order.title}

@@ -16,7 +16,7 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
                 {
                 language?
                 language?.carousel_images.map((v, i) => {
-                    return (<div key={i} className="carousel__img" style={{backgroundImage: `url(${API_HOST+v.url})`}} >
+                    return (<div key={i} className="carousel__img" style={{backgroundImage: `url(${API_HOST+v?.url})`}} >
                             <div className="img_cont"  />
                         </div>)
                 })

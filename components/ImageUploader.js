@@ -41,7 +41,7 @@ export const ImageUploader = (props) => {
                 type="file"
             />
 
-                <img className="article__image clickable-image .clickable-image" src={user.avatar?.url?(API_HOST + user.avatar?.url):`https://avatars.dicebear.com/api/avataaars/${user.id}.svg`} />
+                <img className="article__image clickable-image .clickable-image" src={user.avatar??.url?(API_HOST + user.avatar??.url):`https://avatars.dicebear.com/api/avataaars/${user.id}.svg`} />
                 <div className="text-hide">+</div>
         </form>
     );
