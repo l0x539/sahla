@@ -65,7 +65,7 @@ const Footer = ({language, isArabic}) => {
             </div>
             <div className="footer__right">
                 <div className="footer__logo">
-                    <img src={language?(API_HOST + language?.logo_footer?.url):"/assets/logoFooter.png"}  />
+                    <img width="250" height="250" src={language?(API_HOST + language?.logo_footer?.url):"/assets/logoFooter.png"}  />
                 </div>
                 <h3 className="footer__title2" >Connect with us</h3>
                 <div className="footer__socials">
