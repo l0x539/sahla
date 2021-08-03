@@ -10,7 +10,7 @@ module.exports = {
               "NODE_ENV": "production",
               "MAIN_URL": "https://sahlabusiness.com",
               "BASE_URL": "https://sahlabusiness.com",
-                "NODE_ENV": "production",
+                //"NODE_ENV": "production",
           }
         }
     ]

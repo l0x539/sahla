@@ -19,20 +19,6 @@ import { API_HOST } from '../utils/constants';
 
 import Home from '../components/Home'
 
-
-
-const BEST_SERVICES = [
-  { id: 1, title: 'التعليق الصوتي', desc: 'التعليق الصوتي التعليق الصوتي', image: '/assets/microphone-with-pop-filter-shock-mount-anti-vibration-note-stand-tripod-music-score-studio-production.jpg' },
-  { id: 1, title: 'الجواد للمنتاج', desc: 'الجواد للمنتاج الجواد للمنتاج', image: '/assets/back-view-video-editor-using-computer.jpg' },
-  { id: 1, title: 'الهندسة الصوتية', desc: 'الهندسة الصوتية الهندسة الصوتية', image: '/assets/website-builder-workplace-interior-3d-rendering.jpg' },
-]
-
-const BEST_PRODUCTS = [
-  { id: 1, title: 'حواسيب غايمنغ', desc: 'حواسيب غايمنغ حواسيب غايمنغ', image: '/assets/gaming-desktop-pc-custom-built-cpu--500x500.jpg' },
-  { id: 1, title: 'منتجات شاور', desc: 'منتجات شاور منتجات شاور منتجات شاور', image: '/assets/rsz_bath_and_shower_products.jpg' },
-  { id: 1, title: 'ساعات يد لوكسور', desc: 'ساعات يد لوكسور ساعات يد لوكسور ', image: '/assets/twin_1.jpg.transform.generic-cards_image_335_2x.jpg' },
-]
-
 const SVGS = [
                 <Web />,
                 <Site />,

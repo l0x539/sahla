@@ -62,6 +62,7 @@ function Profile({
       headers: { 
         'content-type': 'multipart/form-data',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        
      },
       onUploadProgress: (event) => {
         setProgress(Math.round((event.loaded * 100) / event.total))

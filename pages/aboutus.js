@@ -7,9 +7,11 @@ import ReactMarkdown from 'react-markdown'
 import Loader from 'react-loader-spinner'
 import AboutUs from '../components/AboutUs';
 import { API_HOST } from '../utils/constants';
+import { useState } from 'react'
 
 
-function AboutUS({
+
+function Sahla({
     english,
     english_navbar,
     english_footer,
@@ -18,25 +20,23 @@ function AboutUS({
     arabic_footer
   }) {
 
-  let language = english;
-  let navbarLang = english_navbar;
-  let footerLang = english_footer;
-  let isArabic = false
-  if (typeof window !== 'undefined') {
-    if (localStorage.getItem("lang")==="ar-DZ") {
-      isArabic = true
+    let language = english;
+    let navbarLang = english_navbar;
+    let footerLang = english_footer;
+    let isArabic = false
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem("lang")==="ar-DZ") isArabic = true
+  
+      switch (localStorage.getItem("lang")) {
+        case "ar-DZ":
+          language = arabic;
+          navbarLang = arabic_navbar;
+          footerLang = arabic_footer;
+          break;
+        default:
+          break;
+      }
     }
-
-    switch (localStorage.getItem("lang")) {
-      case "ar-DZ":
-        language = arabic;
-        navbarLang = arabic_navbar;
-        footerLang = arabic_footer;
-        break;
-      default:
-        break;
-    }
-  }
   return (
     <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
       <Head>
@@ -45,13 +45,13 @@ function AboutUS({
         <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
         
       </Head>
-      <AboutUs language={language} />
+      <AboutUs language={language} isArabic={isArabic} />
       
     </Layout>
   )
 }
 
-export default withRouter(AboutUS);
+export default withRouter(Sahla);
 
 
 export async function getStaticProps(context) {

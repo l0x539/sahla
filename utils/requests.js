@@ -5,7 +5,10 @@ import { API_HOST, LOCAL_API_HOST } from "./constants";
 
 
 export const get_products = async (start=0, limit=32, sort="_sort=orders:desc,rating:desc") => {
-    let response = await axios.get(API_HOST+`/products?_start=${start}&_limit=${limit}&${sort}`)
+    let response = await axios.get(API_HOST+`/products?_start=${start}&_limit=${limit}&${sort}`, 
+    {
+        headers: {}
+    })
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -36,7 +39,9 @@ export const get_products = async (start=0, limit=32, sort="_sort=orders:desc,ra
 }
 
 export const get_services = async (start=0, limit=32, sort="_sort=orders:desc,rating:desc") => {
-    let response = await axios.get(API_HOST+`/services?_start=${start}&_limit=${limit}&${sort}`)
+    let response = await axios.get(API_HOST+`/services?_start=${start}&_limit=${limit}&${sort}`, {
+        headers: {}
+    })
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -67,7 +72,9 @@ export const get_services = async (start=0, limit=32, sort="_sort=orders:desc,ra
 }
 
 export const get_categories = async (type, locale=false) => {
-    let response = await axios.get(API_HOST+`/categories?_where[_or][0][type]=both&_where[_or][1][type]=${type}${locale?`&_locale=${locale}`:""}`)
+    let response = await axios.get(API_HOST+`/categories?_where[_or][0][type]=both&_where[_or][1][type]=${type}${locale?`&_locale=${locale}`:""}`, {
+        headers: {}
+    })
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -99,7 +106,10 @@ export const get_categories = async (type, locale=false) => {
 
 
 export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=created_at:desc,orders:desc,rating:desc") => {
-    let response = await axios.get(API_HOST+`/products?user_id=${user_id}&_start=${start}&${sort}`)
+    let response = await axios.get(API_HOST+`/products?user_id=${user_id}&_start=${start}&${sort}`, 
+    {
+        headers: {}
+    })
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -130,7 +140,10 @@ export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=
 }
 
 export const get_services_user = async (user_id, start=0, limit=32, sort="_sort=created_at:desc,orders:desc,rating:desc") => {
-    let response = await axios.get(API_HOST+`/services?user_id=${user_id}&_start=${start}&${sort}`)
+    let response = await axios.get(API_HOST+`/services?user_id=${user_id}&_start=${start}&${sort}`, 
+    {
+        headers: {}
+    })
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -161,7 +174,10 @@ export const get_services_user = async (user_id, start=0, limit=32, sort="_sort=
 }
 
 export const get_product = async (id) => {
-    let response = await axios.get(API_HOST+`/products/${id}`)
+    let response = await axios.get(API_HOST+`/products/${id}`,
+    {
+        headers: {}
+    })
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -192,7 +208,10 @@ export const get_product = async (id) => {
 }
 
 export const get_service = async (id) => {
-    let response = await axios.get(API_HOST+`/services/${id}`)
+    let response = await axios.get(API_HOST+`/services/${id}`, 
+    {
+        headers: {}
+    })
                     .then(res => {
                         let obj = {};
                         switch (res.status) {
@@ -233,7 +252,8 @@ export const contact_us = async (title, email, content, recaptcha) => {
             recaptcha
         },
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            
         }
     }).then(
         res => {
@@ -276,7 +296,8 @@ export const signup = async (username, email, passwd, secret) => {
             recaptcha: secret,
         },
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            
         }
     }).then(
         res => {
@@ -317,7 +338,8 @@ export const login = async (email, password) => {
             password,
         },
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            
         }
     }).then(
         res => {
@@ -353,7 +375,8 @@ export const get_me = async (token) => {
     let response = axios.get(API_HOST + "/users/me",
         {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                
             }
         }
     ).then(
@@ -390,7 +413,8 @@ export const get_user = async (token, id) => {
     let response = axios.get(API_HOST + "/users/"+id,
         {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                
             }
         }
     ).then(
@@ -493,7 +517,8 @@ export const update_profile = async (data, token, id) => {
         data,
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
+            
         }
     }).then(
         res => {
@@ -623,7 +648,8 @@ export const get_orders = async (token, type="") => {
     let response = axios.get(LOCAL_API_HOST + `/orders${type?.length?`?type=${type}`:""}`,
     {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
+            
         }
     }
     )
@@ -661,7 +687,8 @@ export const delete_product = async (token, id) => {
     let response = axios.delete(API_HOST + "/products/"+id,
         {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                
             }
         }
     ).then(
@@ -698,7 +725,8 @@ export const delete_service = async (token, id) => {
     let response = axios.delete(API_HOST + "/services/"+id,
         {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                
             }
         }
     ).then(
@@ -732,7 +760,10 @@ export const delete_service = async (token, id) => {
 }
 
 export const get_language = async (page, lang=false) => {
-    let response = axios.get(LOCAL_API_HOST + `/${page}${lang?`?_locale=${lang}`:""}`)
+    let response = axios.get(LOCAL_API_HOST + `/${page}${lang?`?_locale=${lang}`:""}`, 
+    {
+        headers: {}
+    })
         .then(
             res => {
                 let obj = {};
@@ -764,7 +795,10 @@ export const get_language = async (page, lang=false) => {
 }
 
 export const get_best_products = async () => {
-    let response = axios.get(LOCAL_API_HOST + `/best_products`)
+    let response = axios.get(LOCAL_API_HOST + `/best_products`, 
+    {
+        headers: {}
+    })
         .then(
             res => {
                 let obj = {};
@@ -796,7 +830,10 @@ export const get_best_products = async () => {
 }
 
 export const get_best_services = async () => {
-    let response = axios.get(LOCAL_API_HOST + `/best_services`)
+    let response = axios.get(LOCAL_API_HOST + `/best_services`, 
+    {
+        headers: {}
+    })
         .then(
             res => {
                 let obj = {};
