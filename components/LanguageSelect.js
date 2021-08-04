@@ -38,14 +38,15 @@ class LanguageSelect extends Component {
     setArabic = async () => {
         if (localStorage.getItem("lang") !== "ar-DZ") {
             await localStorage.setItem("lang", "ar-DZ")
-            Router.push("/");
+            window.location.reload()
         }
     }
 
     setEnglish = async () => {
         if (localStorage.getItem("lang")) {
             await localStorage.removeItem("lang")
-            Router.push("/");
+            window.location.reload()
+            
         }
     }
 

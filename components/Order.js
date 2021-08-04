@@ -18,11 +18,11 @@ export class Order extends Component {
         e.preventDefault()
         let form = e.target.elements;
 
-        let address = form[0].value;
-        let quantity = this.props.order.price?form[1].value:undefined;
-        let services_plans = this.props.order.services_plans?(this.props.order.price?form[2].value:form[1].value):undefined
-        let email = form[this.props.order.price&&this.props.order.services_plans?3:(this.props.order.price||this.props.order.services_plans?2:1)].value;
-        let phone = this.state.form?form[this.props.order.price&&this.props.order.services_plans?4:(this.props.order.price||this.props.order.services_plans?3:2)].value:undefined;
+        let address = form.adress?.value;
+        let quantity = form.quantity?.value;
+        let services_plans = form.plans?.value;
+        let email = form.email?.value;
+        let phone = form.phone?.value;
 
         let data = {
             address,
@@ -65,7 +65,7 @@ export class Order extends Component {
                         :null
                     }
                     {
-                        this.props.order.services_plans?
+                        this.props.order.services_plans?.length?
                         <select type="number" name="plans" className="input__main" placeholder="Plans" />
                         :null
                     }

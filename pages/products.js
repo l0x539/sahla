@@ -73,7 +73,7 @@ function Products({
   let queryProducts;
 
   if (search.length) {
-    queryProducts = searchQuery("products", search, user_id=false, token=false, categories)
+    queryProducts = searchQuery("products", search, false, false, categories)
   } else {
     queryProducts = getProducts(categories)
   }

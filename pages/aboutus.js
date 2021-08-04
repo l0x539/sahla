@@ -23,10 +23,8 @@ function Sahla({
     let language = english;
     let navbarLang = english_navbar;
     let footerLang = english_footer;
-    let isArabic = false
     if (typeof window !== 'undefined') {
-      if (localStorage.getItem("lang")==="ar-DZ") isArabic = true
-  
+
       switch (localStorage.getItem("lang")) {
         case "ar-DZ":
           language = arabic;
@@ -38,14 +36,14 @@ function Sahla({
       }
     }
   return (
-    <Layout navbarLang={navbarLang} footerLang={footerLang} isArabic={isArabic} >
+    <Layout navbarLang={navbarLang} footerLang={footerLang} >
       <Head>
         <title>Sahla Business</title>
         <meta name="description" content="Sahla business description" />
         <link rel="icon" href={language?(API_HOST + language?.favicon?.url):"/favicon.ico"} />
         
       </Head>
-      <AboutUs language={language} isArabic={isArabic} />
+      <AboutUs language={language} />
       
     </Layout>
   )

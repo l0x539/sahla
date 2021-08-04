@@ -106,7 +106,7 @@ export const get_categories = async (type, locale=false) => {
 
 
 export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=created_at:desc,orders:desc,rating:desc") => {
-    let response = await axios.get(API_HOST+`/products?user_id=${user_id}&_start=${start}&${sort}`, 
+    let response = await axios.get(API_HOST+`/products?${user_id?`user_id=${user_id}&`:""}_start=${start}&${sort}`, 
     {
         headers: {}
     })
@@ -140,7 +140,7 @@ export const get_products_user = async (user_id, start=0, limit=32, sort="_sort=
 }
 
 export const get_services_user = async (user_id, start=0, limit=32, sort="_sort=created_at:desc,orders:desc,rating:desc") => {
-    let response = await axios.get(API_HOST+`/services?user_id=${user_id}&_start=${start}&${sort}`, 
+    let response = await axios.get(API_HOST+`/services?${user_id?`user_id=${user_id}&`:""}_start=${start}&${sort}`, 
     {
         headers: {}
     })
@@ -645,7 +645,7 @@ export const place_order = async(data, config) => {
 }
 
 export const get_orders = async (token, type="") => {
-    let response = axios.get(LOCAL_API_HOST + `/orders${type?.length?`?type=${type}`:""}`,
+    let response = axios.get(API_HOST + `/orders${type?.length?`?type=${type}`:""}`,
     {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -795,7 +795,7 @@ export const get_language = async (page, lang=false) => {
 }
 
 export const get_best_products = async () => {
-    let response = axios.get(LOCAL_API_HOST + `/best_products`, 
+    let response = axios.get(LOCAL_API_HOST + `/best-products`, 
     {
         headers: {}
     })
@@ -830,7 +830,7 @@ export const get_best_products = async () => {
 }
 
 export const get_best_services = async () => {
-    let response = axios.get(LOCAL_API_HOST + `/best_services`, 
+    let response = axios.get(LOCAL_API_HOST + `/home-services`, 
     {
         headers: {}
     })

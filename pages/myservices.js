@@ -35,6 +35,19 @@ function MyServices({
   }) {
 
   const [search, setSearch] = useState('')
+  const [categories, setCategoriesItems] = useState([])
+
+  const setCategories = async (category ) => {
+
+    if (categories.indexOf(category.sort)!==-1) {
+      const new_categories = await categories.filter((v, i) => v!==category.sort)
+
+      setCategoriesItems(new_categories)
+      
+    } else {
+      setCategoriesItems([...categories, category.sort])
+    }
+  }
 
   let language = english;
   let navbarLang = english_navbar;
@@ -77,9 +90,9 @@ function MyServices({
     let queryServices;
 
     if (search.length) {
-      queryServices = searchQuery("services", search, true, token)
+      queryServices = searchQuery("services", search, true, token, categories)
     } else {
-      queryServices = getUserService(false, token)
+      queryServices = getUserService(categories, true, token)
     }
   
     
@@ -104,7 +117,7 @@ function MyServices({
             <meta name="description" content="Sahla business description" />
             
           </Head>
-          <ServicesList isLoading={queryServices.isLoading} setSearch={setSearch} isLoggedIn services={services} preview={openModal} />
+          <ServicesList isLoading={queryServices.isLoading} setCategories={setCategories} categories={categories} setSearch={setSearch} isLoggedIn services={services} preview={openModal} />
           <Modal
               className={classes.modal}
               aria-labelledby="transition-modal-title"

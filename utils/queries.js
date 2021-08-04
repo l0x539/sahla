@@ -35,32 +35,34 @@ export const getOrders = (token, type="") => {
     })
 }
 
-export const getUserProduct = (user_id=false, token=false, start=0, limit=32) => {
+export const getUserProduct = (categories=false, user_id=false, token=false, start=0, limit=32) => {
 
     return useQuery(["products", "myuser", start], async () => {
 
-        if (!user_id) {
+        if (user_id) {
 
             const user = await get_me(token)
             user_id = user.data.id
         }
-        return get_products_user(user_id, start, limit)
+        categories = categories?.length?categories.reduce((v, i) => v.length):categories
+        return get_products_user(user_id, start, limit, `_sort=${categories?.length?`${categories}`:"orders:desc,rating:desc"}`)
 
     }, {
         staleTime: 1000
     })
 }
 
-export const getUserService = (user_id=false, token=false, start=0, limit=32) => {
+export const getUserService = (categories=false, user_id=false, token=false, start=0, limit=32) => {
 
     return useQuery(["products", "myuser", start], async () => {
 
-        if (!user_id) {
+        if (user_id) {
 
             const user = await get_me(token)
             user_id = user.data.id
         }
-        return get_services_user(user_id, start, limit)
+        categories = categories?.length?categories.reduce((v, i) => v.length):categories
+        return get_services_user(user_id, start, limit, `_sort=${categories?.length?`${categories}`:"orders:desc,rating:desc"}`)
 
     }, {
         staleTime: 1000
@@ -69,7 +71,8 @@ export const getUserService = (user_id=false, token=false, start=0, limit=32) =>
 
 export const getProducts = (categories=false, start=0, limit=32) => {
     return useQuery(["products", categories, start], async () => {
-        return get_products(start, limit, `_sort=${categories?.length?`${categories.map((v, i) => `${v}`)}`:"orders:desc,rating:desc"}`)
+        categories = categories?.length?categories.reduce((v, i) => v.length):categories
+        return get_products(start, limit, `_sort=${categories?.length?`${categories}`:"orders:desc,rating:desc"}`)
     }, {
         staleTime: 1000
     })
@@ -77,8 +80,8 @@ export const getProducts = (categories=false, start=0, limit=32) => {
 
 export const getServices = (categories=false, start=0, limit=32) => {
     return useQuery(["services", categories, start], async () => {
-
-        return get_services(start, limit, `_sort=${categories?.length?`${categories.map((v, i) => `${v}${i===(categories.length-1)?"":","}`)}`:"orders:desc,rating:desc"}`)
+        categories = categories?.length?categories.reduce((v, i) => v.length):categories
+        return get_services(start, limit, `_sort=${categories?.length?`${categories}`:"orders:desc,rating:desc"}`)
     }, {
         staleTime: 1000
     })
@@ -94,7 +97,8 @@ export const searchQuery =  (searchfor, query, user_id=false, token=false, categ
         const source = CancelToken.source()
         const promise = new Promise(resolve => setTimeout(resolve, 1000))
             .then(() => {
-                return axios.get(API_HOST+`/${searchfor}?_where[_or][0][title_contains]=${query}&_where[_or][1][description_contains]=${query}${user_id?`&_user_id=${user_id}`:""}${categories?`&_sort=${categories.map((v, i) => `${v}${i===(categories.length-1)?"":","}`)}`:""}`,
+                categories = categories?.length?categories.reduce((v, i) => v.length):categories
+                return axios.get(API_HOST+`/${searchfor}?_where[_or][0][title_contains]=${query}&_where[_or][1][description_contains]=${query}${user_id?`&_user_id=${user_id}`:""}${categories?.length?`&_sort=${categories}`:""}`,
                     {
                         cancelToken: source.token
                     }

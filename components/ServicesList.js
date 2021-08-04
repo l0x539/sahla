@@ -92,6 +92,10 @@ class ServicesList extends Component {
         this.setState({services })
     }
 
+    selecCategory = (category) => {
+        this.props.setCategories(category)
+    }
+
 
     render () {
         return (
@@ -117,7 +121,7 @@ class ServicesList extends Component {
                 :null
                 }
                 <div className="list">
-                    <Categories categories={this.state.categories} />
+                    <Categories setCategories={this.selecCategory} categories={this.state.categories} />
                     <div className={"list__right " + (this.props.isLoggedIn?"card__logged":"")}>
                         <CardCarousel isLoading={this.props.isLoading} isLoggedIn={this.props.isLoggedIn} preview={this.previewService} items={this.props.services} selectCard={this.selectCard} />
                     </div>

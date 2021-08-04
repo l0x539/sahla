@@ -7,9 +7,14 @@ import CardCarousel from '../components/CardCarousel';
 import Paper from '../components/Paper';
 import Category from '../components/Category';
 import { API_HOST } from '../utils/constants';
+import { useEffect, useState } from 'react';
 
 const Home = ({language, goProduct, goService, SVGS, services, products}) => {
-
+    const [isArabic, setIsArabic] = useState(false)
+    useEffect(() => {
+      if (localStorage.getItem("lang")==="ar-DZ") setIsArabic(true)
+      // code to run on component mount
+    }, [])
     return (
         <>
             <Carousel swiping showStatus={false} autoPlay swipeable showThumbs={false}>
@@ -27,17 +32,17 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
                     
                 }
             </Carousel>
-            <SearchBar isArabic={/[\u0600-\u06FF]/.test(language?.how_to_join)?true:false} placeholder={language?.search_pleaceholder??"... إبحث عن خدمة أو منتج الآن"} />
+            <SearchBar isArabic={isArabic} placeholder={language?.search_pleaceholder??"... إبحث عن خدمة أو منتج الآن"} />
             <div className="main-divider"></div>
             <div className="content__holder">
-                <h2 className={`content__title ${/[\u0600-\u06FF]/.test(language?.services_title)?"arabic":""}`}>
+                <h2 className={`content__title ${isArabic?"arabic":""}`}>
                 {language?language?.services_title:"أفضل الخدمات"}
                 </h2>
                 <CardCarousel preview={goService} items={services} />
             </div>
             <div className="main-divider"></div>
             <div className="content__holder">
-                <h2 className={`content__title ${/[\u0600-\u06FF]/.test(language?.products_title)?"arabic":""}`}>
+                <h2 className={`content__title ${isArabic?"arabic":""}`}>
                 {language?language?.products_title:"أفضل المنتجات"}
                 </h2>
                 <CardCarousel preview={goProduct} items={products} />
@@ -46,14 +51,14 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
 
             <div className="content__darker-holder">
                 <div className="content">
-                <h2 className={`content__darker-holder-title${/[\u0600-\u06FF]/.test(language?.how_to_join)?"arabic":""}`}>
+                <h2 className={`content__darker-holder-title ${isArabic?"arabic":""}`}>
                     {language?language?.how_to_join:"كيف تنظم للعمل مع سهلة"}
                 </h2>
                 <div className="content__fr">
 
                     {[1, 2, 3].map((v, i) => {
                     return (
-                        <Paper key={i} isArabic={/[\u0600-\u06FF]/.test(language?.how_to_join)} otherSide={
+                        <Paper key={i} isArabic={isArabic} otherSide={
                             language?
                             <>
                                 <h4 className="paper__title">
@@ -80,7 +85,7 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
             </div>
             <div className="main-divider"></div>
 
-            <div className="content__image-holder">
+            <div className="content__image-holder" style={{backgroundImage: `url(${API_HOST + language.categories_image?.url})`}}>
                 <div className="content">
                     <h2 className={`content__darker-holder-title ${/[\u0600-\u06FF]/.test(language?.categories_title)?"arabic":""}`}>
                     {language?.categories_title}
@@ -88,14 +93,14 @@ const Home = ({language, goProduct, goService, SVGS, services, products}) => {
                     <div className="content__image-holder__categories">
                         {language?.categories.filter((_, i) => i <4).map((v, i) => {
                         return (
-                            <Category key={i} isArabic={/[\u0600-\u06FF]/.test(language?.categories_title)} title={v.title} desc={v.description} svg={SVGS[i]} />
+                            <Category key={i} isArabic={isArabic} title={v.title} desc={v.description} svg={SVGS[i]} />
                         )
                         })}
                     </div>
                     <div className="content__image-holder__categories">
                         {language?.categories.filter((_, i) => i >=4).map((v, i) => {
                         return (
-                            <Category key={i+4} isArabic={/[\u0600-\u06FF]/.test(language?.categories_title)} title={v.title} desc={v.description} svg={SVGS[i+4]} />
+                            <Category key={i+4} isArabic={isArabic} title={v.title} desc={v.description} svg={SVGS[i+4]} />
                         )
                         })}
                     </div>

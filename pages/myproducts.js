@@ -56,6 +56,19 @@ function MyProducts({
   const classes = useStyles();
   const [preview, setPreview] = useState({})
   const [modalOpen, setModalOpen] = useState(false)
+  const [categories, setCategoriesItems] = useState([])
+
+  const setCategories = async (category ) => {
+
+    if (categories.indexOf(category.sort)!==-1) {
+      const new_categories = await categories.filter((v, i) => v!==category.sort)
+
+      setCategoriesItems(new_categories)
+      
+    } else {
+      setCategoriesItems([...categories, category.sort])
+    }
+  }
 
   const openModal = (preview) => {
     setPreview(preview)
@@ -77,9 +90,9 @@ function MyProducts({
     let queryProducts;
 
     if (search.length) {
-      queryProducts = searchQuery("products", search, true, token)
+      queryProducts = searchQuery("products", search, true, token, categories)
     } else {
-      queryProducts = getUserProduct(false, token)
+      queryProducts = getUserProduct(categories, true, token)
     }
   
     
@@ -104,7 +117,7 @@ function MyProducts({
             <meta name="description" content="Sahla business description" />
             
           </Head>
-          <ProductsList isLoading={queryProducts.isLoading} setSearch={setSearch} isLoggedIn products={products} preview={openModal} />
+          <ProductsList isLoading={queryProducts.isLoading} setCategories={setCategories} categories={categories} setSearch={setSearch} isLoggedIn products={products} preview={openModal} />
           <Modal
               className={classes.modal}
               aria-labelledby="transition-modal-title"

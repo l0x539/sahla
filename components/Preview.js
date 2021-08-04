@@ -178,7 +178,7 @@ export const Preview = ({ order, service }) => {
                     </Collapse>
                 </>
                 :
-                <Order place_order={place_order} type={'products'} exitOrder={exitOrder} order={order} />
+                <Order place_order={place_order} type={service+"s"} exitOrder={exitOrder} order={order} />
               }
             </Card>
 

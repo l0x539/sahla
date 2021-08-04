@@ -38,6 +38,19 @@ function Services({
   const [preview, setPreview] = useState({})
   const [modalOpen, setModalOpen] = useState(false)
   const [search, setSearch] = useState('')
+  const [categories, setCategoriesItems] = useState([])
+
+  const setCategories = async (category ) => {
+
+    if (categories.indexOf(category.sort)!==-1) {
+      const new_categories = await categories.filter((v, i) => v!==category.sort)
+
+      setCategoriesItems(new_categories)
+      
+    } else {
+      setCategoriesItems([...categories, category.sort])
+    }
+  }
 
   let language = english;
   let navbarLang = english_navbar;
@@ -60,9 +73,9 @@ function Services({
   let queryServices;
 
   if (search.length) {
-    queryServices = searchQuery("services", search)
+    queryServices = searchQuery("services", search, false, false, categories)
   } else {
-    queryServices = getServices()
+    queryServices = getServices(categories)
   }
 
   if (!queryServices) {
@@ -96,7 +109,7 @@ function Services({
         
       </Head>
 
-      <ServicesList isLoading={queryServices.isLoading} setSearch={setSearch} services={services} preview={openModal} />
+      <ServicesList isLoading={queryServices.isLoading} setCategories={setCategories} categories={categories} setSearch={setSearch} services={services} preview={openModal} />
     
       <Modal
           className={classes.modal}

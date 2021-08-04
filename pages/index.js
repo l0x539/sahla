@@ -45,9 +45,9 @@ function HomePage({
   let language = english;
   let navbarLang = english_navbar;
   let footerLang = english_footer;
-  let isArabic = false
+
   if (typeof window !== 'undefined') {
-    if (localStorage.getItem("lang")==="ar-DZ") isArabic = true
+    
 
     switch (localStorage.getItem("lang")) {
       case "ar-DZ":
@@ -90,8 +90,8 @@ export async function getStaticProps(context) {
 	let arabic_navbar = (await get_language("navbar", "ar-DZ"))?.data;
 	let arabic_footer = (await get_language("footer", "ar-DZ"))?.data;
 
-  let best_products = (await get_best_products())?.data;
-  let best_services = (await get_best_services())?.data;
+  let best_products = (await get_best_products())?.data?.products;
+  let best_services = (await get_best_services())?.data?.services;
 
 	return {
 		props: {

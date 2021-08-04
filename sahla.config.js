@@ -3,7 +3,7 @@ module.exports = {
         {
           name: "sahla",
           script: "yarn start",
-          watch: true,
+          watch: false,
           increment_var : 'PORT',
           env: {
               "PORT": 3000,

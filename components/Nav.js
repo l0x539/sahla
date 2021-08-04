@@ -158,7 +158,7 @@ class Nav extends Component {
                 centerContent={true}
                 title={<div className="heading-primary">{language?language?.singin:'Sign In'}</div>}
                     closeModal={this.closeModal}>
-                    <Registration language={language} NotificationManager={NotificationManager} closeModal={this.closeModal} setLogin={this.props.setLogin} />
+                    <Registration modalOpen={this.state.modalOpen} language={language} NotificationManager={NotificationManager} closeModal={this.closeModal} setLogin={this.props.setLogin} />
                 </Modal>
             </>
         )
