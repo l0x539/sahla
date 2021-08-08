@@ -21,7 +21,10 @@ let exp = {
   include: path.resolve(__dirname, 'assets'),
   webpack(config, options) {
     return config
-  }
+  },
+  images: {
+    domains: ['api.sahlabusiness.com'],
+  },
 })
 }
 console.log(exp);

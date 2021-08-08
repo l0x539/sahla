@@ -65,7 +65,8 @@ const Footer = ({language, isArabic}) => {
             </div>
             <div className="footer__right">
                 <div className="footer__logo">
-                    <img height={language.logo_footer?.width} width={"auto"} src={language?(API_HOST + language?.logo_footer?.url):"/assets/logoFooter.png"}  />
+                    <img layout={'fill'} height={language.logo_footer?.height?language.logo_footer?.width:249} width={'auto'} src={language?.logo_footer?.url?(API_HOST + language?.logo_footer?.url):"/assets/logoFooter.png"} alt={'Sahla Business Logo'}  /> 
+                    {/* height={language.logo_footer?.width} width={'auto'} */}
                 </div>
                 <h3 className="footer__title2" >Connect with us</h3>
                 <div className="footer__socials">
