@@ -20,12 +20,16 @@
     }
 
     &-header--right {
-        width: 14rem;
+        width: auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 2rem;
         cursor: pointer;
+    }
+
+    &-header--right span {
+        margin: 0 1rem;
     }
 
     &-desc {
