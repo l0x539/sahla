@@ -158,6 +158,7 @@ export const Preview = ({ order, service }) => {
                         <IconButton aria-label="share">
                         <ShareIcon className={classes.svg} />
                         </IconButton>
+                        {order?.detailsDesc?.length > 0?
                         <IconButton
                         className={clsx(classes.expand, {
                             [classes.expandOpen]: expanded,
@@ -167,7 +168,8 @@ export const Preview = ({ order, service }) => {
                         aria-label="show more"
                         >
                         <ExpandMoreIcon className={classes.svg} />
-                        </IconButton>
+                        </IconButton>: null
+                        }
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent>
