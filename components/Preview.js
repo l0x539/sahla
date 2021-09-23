@@ -100,7 +100,7 @@ export const Preview = ({ order, service }) => {
                         <SettingsOverscanIcon className={classes.svg} onClick={() => router.push(`/${service}/${order.id}`)} />
                     </IconButton>
                     }
-                    title={<div className="card__content"><h1 class="card__title" style={{ fontSize: "6em" }}>{order?.title}<div class="card__title-bar"></div></h1></div>}
+                    title={<div className="card__content"><h1 class="card__title" style={{ fontSize: "2rem" }}>{order?.title}<div class="card__title-bar"></div></h1></div>}
                     subheader={() => {
                         const date = Date(order?.created_at);
                         return date.split(" ", 5).join(" " )
