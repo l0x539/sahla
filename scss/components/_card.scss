@@ -43,11 +43,12 @@
         font-size: 1.5em;
         font-weight: 700;
         white-space: nowrap;
+        margin-bottom: 0.7rem;
     }
     &__title-bar {
         width: 100%;
-        margin-top: -18px;
-        border-top: 12px solid $button-color;
+        margin-top: -10px;
+        border-top: 7px solid $button-color;
         border-radius: 4px;
     }
 
